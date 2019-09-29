@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2019 a las 04:50:12
+-- Tiempo de generación: 29-09-2019 a las 05:11:43
 -- Versión del servidor: 10.3.15-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -118,7 +118,8 @@ CREATE TABLE `trabajador` (
   `APATERNO` varchar(50) NOT NULL,
   `AMATERNO` varchar(50) NOT NULL,
   `NOMBRE` varchar(50) NOT NULL,
-  `CONTRASEÑA` varchar(50) NOT NULL
+  `CONTRASEÑA` varchar(50) NOT NULL,
+  `FOTO` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -134,7 +135,8 @@ CREATE TABLE `usuario` (
   `NOMBRE` varchar(50) NOT NULL,
   `CONTRASEÑA` varchar(50) NOT NULL,
   `TIPO` varchar(50) NOT NULL,
-  `ESTADO` varchar(50) NOT NULL
+  `ESTADO` varchar(50) NOT NULL,
+  `FOTO` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
