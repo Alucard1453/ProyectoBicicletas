@@ -23,6 +23,7 @@
     <!--Importacion de fuentes locales-->
     <link rel="stylesheet" href="user.css" type="text/css" media="all" />
     <script type="text/javascript" src="user.js"></script>
+    <script type="text/javascript">validarsesion();</script>
 </head>
 <body>
     <nav> <!-- navbar content here  --> 
@@ -57,94 +58,110 @@
         <div class="divider"></div>
         <div class="separador"></div>
         <div class="row" id="contenedor">
-            <div class="card col s12 m6 l4" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-trigger right" data-target="modalAlta">
+                    <i class="large material-icons">add</i>
+                </a>
             </div>
-
-            <!-- <div class="col-sm-12 col-md-6 col-lg-4"><p>s12</p></div>
-            <div class="col-sm-12 col-md-6 col-lg-4"><p>s12 m4</p></div>
-            <div class="col-sm-12 col-md-6 col-lg-4"><p>s12 m4</p></div>
-            <div class="col-sm-12 col-md-6 col-lg-4"><p>s12 m4</p></div> -->
+            <!-- SE COMENTO DEBIDO A QUE SE CONSTRUIRA EL DOM USANDO AJAX -->
+            <!-- <div class="card col s12 m6 l4">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="images/office.jpg">
+                </div>
+                <div class="card-content">
+                    <div class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></div> -->
+                    <!-- ESTE NO SE PONDRA <p><a href="#">This is a link</a></p> -->
+                <!-- </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+                <div class="card-action"> -->
+                    <!-- Aqui van los botones para editar y eliminar -->
+                <!-- </div>
+            </div> -->
         </div>
         
-        <div class="row">
-            <div class="col s9 m10 l10" id="space"></div>
-            <div class="col s2 m1 l1">
-                <!-- Modal Trigger -->
-                <button class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-trigger" 
-                data-target="modalAlta">
-                    <i class="material-icons">add</i>
-                </button>
-            </div>
-        </div>
+        <!-- Aqui el boton permanecia hasta abajo, se cambio para hacerlo flotante -->
+        <!-- <div class="row"> -->
+            <!-- Modal Trigger -->
+            <!-- <button class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-trigger right" 
+            data-target="modalAlta">
+                <i class="material-icons">add</i>
+            </button>
+        </div> -->
           
         <!-- Modal Structure Alta bicicletas-->
         <div id="modalAlta" class="modal">
             <div class="modal-content">
                 <h4>Alta de bicicletas</h4>
                 <div class="divider"></div>
+                <div style="height: 1em;"></div>
                 <div class="row">
                     <form class="col s12" action="altabike.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
-                        <div class="col s12 m6 l6">
-                            <img id="imgSalida" width="100%" height="100%" src="./resources/bikedefault.png"/>
-                        </div>
-                        <input name="file-input" id="file-input" type="file" />
-                        <br />
-                        <img id="imgSalida" width="50%" height="50%" src="" />
-                        <div class="input-field col s6">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                            <label for="first_name">First Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name">Last Name</label>
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="input-field col s12">
-                            <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-                            <label for="disabled">Disabled</label>
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="input-field col s12">
-                            <input id="password" type="password" class="validate">
-                            <label for="password">Password</label>
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="input-field col s12">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col s12">
-                            This is an inline input field:
-                            <div class="input-field inline">
-                            <input id="email_inline" type="email" class="validate">
-                            <label for="email_inline">Email</label>
-                            <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                            <div class="col s12 m6 l6">
+                                <img id="imgSalida" width="100%" height="100%" src="./resources/bikedefault.png"/>
+                            </div>
+                            <div class="file-field input-field col s12 m6 l6">
+                                <div class="btn waves-effect waves-light light-blue darken-4">
+                                    <i class="material-icons">image</i> Seleccionar Imagen
+                                    <input id="file-input" name="file-input" type="file" accept="image/*" onchange="validaCampos()"/>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                            <div class="input-field col s12 m6 l6">
+                                <select id="selectMarca" name="selectMarca" onchange="validaCampos()">
+                                    <option value="" disabled selected>Elige la marca</option>
+                                </select>
+                                <label>Marca</label>
+                            </div>
+                            <div class="input-field col s12 m6 l6">
+                                <select id="selectColor" name="selectColor" onchange="validaCampos()">
+                                    <option value="" disabled selected>Elige el color</option>
+                                    <option value="Negro">Negro</option>
+                                    <option value="Verde">Verde</option>
+                                    <option value="Amarillo">Amarillo</option>
+                                    <option value="Naranja">Naranja</option>
+                                    <option value="Rojo">Rojo</option>
+                                    <option value="Morado">Morado</option>
+                                    <option value="Azul">Azul</option>
+                                    <option value="Blanco">Blanco</option>
+                                </select>
+                                <label>Color</label>
+                            </div>
+                            <div class="input-field col s12 m6 l6">
+                                <select id="selectTipo" name="selectTipo" onchange="validaCampos()">
+                                    <option value="" disabled selected>Selecciona el tipo</option>
+                                    <option value="Ciudad">Ciudad</option>
+                                    <option value="Montana">Montaña</option>
+                                    <option value="Carreras">Carreras</option>
+                                    <option value="Turismo">Turismo</option>
+                                    <option value="Plegable">Plegable</option>
+                                    <option value="Hibrida">Híbrida</option>
+                                    <option value="Playera">Playera</option>
+                                    <option value="BMX">BMX</option>
+                                </select>
+                                <label>Tipo de Bicicleta</label>
+                            </div>
+                            <div class="col s12 m6 l6"></div>
+                            <div class="input-field col s12 m6 l6">
+                                <button id="btnConfirmaAlta" class="modal-close waves-effect waves-light light-blue darken-4 btn" disabled>
+                                    <i class="material-icons right">send</i>Continuar
+                                </button>
                             </div>
                         </div>
-                        </div>
+                        <div class="col s12 m6 l6"></div>
+                        
                     </form>
                 </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
         </div>
-        
+    </div>
     
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-    <script>validarsesion();</script>
 </body>
 </html>
