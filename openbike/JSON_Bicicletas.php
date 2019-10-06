@@ -8,7 +8,7 @@ try {
     $mdb = new PDO("mysql:host=$servername;dbname=$dbname", $usuario, $contrasena);
     // set the PDO error mode to exception
     $mdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = $mdb->prepare("SELECT * FROM bicicleta AS b INNER JOIN marca AS m ON b.IDMARCA=m.IDMARCA");
+    $sql = $mdb->prepare("SELECT * FROM bicicleta AS b INNER JOIN marca AS m ON b.IDMARCA=m.IDMARCA WHERE ESTADO = 'Activo'");
     $sql->execute();
     // use exec() because no results are returned
     $contador=0;

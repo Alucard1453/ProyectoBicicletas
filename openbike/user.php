@@ -199,6 +199,20 @@
                 <i class="material-icons">add</i>
             </button>
         </div> -->
+
+        <!-- - - - - - - - - - - - - - - - - - - - - - Modal Structure Edicion de  bicicletas- - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <div class="modal"  id="modalEdita" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-content" role="document" id="modalEditar" >
+
+                </div>
+        </div> 
+        
+        <!--  - - - - - - - - - - - - - - - - - - - - - Modal para CONFIRMAR la baja de la bicicleta - - - - - - - - - - - - - - - - - - - - - -->
+        <div class="modal" role="dialog" id="modalBaja" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" id="modalConfirmacionEliminar" >
+                <!--  -->
+            </div>
+        </div>
           
         <!-- Modal Structure Alta bicicletas-->
         <div id="modalAlta" class="modal">
