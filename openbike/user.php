@@ -34,23 +34,132 @@
             </ul>
         </div>
     </nav>
+
+
+    <?php
+        try {
+            $mbd = new PDO("mysql:host=localhost;dbname=sistemabicis", 'root', '');
+            
+            $usuario = 201624306;
+
+            $gsent = $mbd->prepare("SELECT CLAVEUSER, APATERNO, AMATERNO, NOMBRE,CONTRASENA, TIPO, ESTADO, FOTO from usuario where CLAVEUSER= '$usuario'");
+            $gsent->execute();
+            while($result3 = $gsent->fetch(PDO::FETCH_OBJ)){
+                    $id = $result3->CLAVEUSER;
+                    $paterno = $result3->APATERNO;       // Es una propiedad. Accesible desde el objeto
+                    $materno = $result3->AMATERNO;        // Es una propiedad. Accesible desde el objeto
+                    $nombre = $result3->NOMBRE;
+                    $contrasena = $result3->CONTRASENA;
+                    $tipo = $result3->TIPO;
+                    $estado = $result3->ESTADO;        // Es una propiedad. Accesible desde el objeto
+                    $foto = $result3->FOTO;    
+                                            
+                }                  
+        }
+        catch(PDOException $e){
+        echo $e->getMessage();
+        }  
+        ?>
+
+
     <ul id="slide-out" class="sidenav">
         <li>
             <div class="user-view">
                 <div class="background">
                     <img src="resources/fondo.jpg">
                 </div>
-            <a href="#user"><img class="circle" src="resources/foto.jpg"></a>
-            <a href="#name"><span class="white-text name">Sara Connor</span></a>
-            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            <a href="#user"><img class="circle" src="data:image/jpg;base64,<?php echo base64_encode($foto); ?>"></a>
+            <a href="#name"><span class="white-text name"><?php echo $nombre.' '.$paterno.' '.$materno?></span></a>
+            <a href="#matricula"><span class="white-text matricula"><?php echo $id ?></span></a>
             </div>
         </li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
+        <li><a class="subheader"><?php echo $tipo ?></a></li>
         <li><div class="divider"></div></li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        <li><a class="subheader"><?php echo $estado ?></a></li>
+        <li><div class="divider"></div></li>
+        
+        <?php 
+
+        if($tipo == 'Alumno'){
+            echo '<li><a href="#modal1" class="btn modal-trigger blue"><i class="material-icons">cloud</i><p style="font-size: 12px;">Cambiar foto</p></a></li>
+                <li><div class="divider"></div></li>
+                <li><a href="#modal2" class="btn modal-trigger blue"><i class="material-icons">cloud</i><p style="font-size: 12px;">Cambiar contraseña</p></a></li>';
+        }else{
+            echo '<li><a href="#modal3" class="btn modal-trigger blue"><i class="material-icons">cloud</i><p style="font-size: 12px;">Cambiar Nombre</p></a></li>
+                <li><div class="divider"></div></li>
+                <li><a href="#modal1" class="btn modal-trigger blue"><i class="material-icons">cloud</i><p style="font-size: 12px;">Cambiar foto</p></a></li>
+                <li><div class="divider"></div></li>
+                <li><a href="#modal2" class="btn modal-trigger blue"><i class="material-icons">cloud</i><p style="font-size: 12px;">Cambiar contraseña</p></a></li>';
+        }
+        
+        ?>
     </ul>
+
+<!-- MODAL1 foto MATERIALIZE -->
+    
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <form action="validaFoto.php" method="POST" enctype="multipart/form-data" class="col s12" id="aux">
+                    <div class="row">
+                        <p><h5><center>Modificar foto de perfil</center></h5></p>
+                        <div class="divider"></div>
+                        <center><br><img id="ImagenCambio" class="imagenPersona" height="200px" src="data:image/jpg;base64,<?php echo base64_encode($foto); ?>" /></center><br> 
+                        <center><input type="file" id="archivo" name="archivo" onchange="validaCamposFoto()"/><br><br></center>
+
+                        <center><button id="botonenviar" type="submit" class="btn modal-trigger blue" disabled>Guardar</button></center>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            
+        </div>
+    </div>
+
+    <!-- MODAL2 contraseña MATERIALIZE -->
+    
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <form action="validaContra.php" method="POST" enctype="multipart/form-data" class="col s12">
+                    <div class="row">
+                        <p><h5><center>Cambiar contraseña</center></h5></p>
+                        <div class="divider"></div>
+                        <label for="password">Contraseña actual</label>
+                        <input id="password" placeholder="Coloca la contraseña actual" name="contra1" type="password" class="validate">
+                        <label for="password">Nueva contraseña</label>
+                        <input id="newPassword" placeholder="Coloca la nueva contraseña" name="contra2" type="password" class="validate">
+                        <center><button id="botonContra" type="submit" class="btn modal-trigger blue" disabled>Guardar</button></center>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            
+        </div>
+    </div>
+
+    <!-- MODAL3 nombre MATERIALIZE -->
+    
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <form action="validaContra.php" method="POST" enctype="multipart/form-data" class="col s12">
+                    <div class="row">
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            
+        </div>
+    </div>
+
     <div class="separador"></div>
     <div class="container">
         <h4>Administración de bicicletas</h4>
@@ -165,3 +274,62 @@
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
 </html>
+
+<script>
+    
+    $(document).ready(function() {
+        
+    // Escuchamos el evento 'change' del input donde cargamos el archivo
+        $(document).on('change', 'input[type=file]', function(e) {
+            if(e.target.form.id == 'aux'){
+                    // Obtenemos la ruta temporal mediante el evento
+                var TmpPath = URL.createObjectURL(e.target.files[0]);
+                //console.log(TmpPath);
+                var imagen = document.createElement("img");
+                imagen.setAttribute("src",TmpPath);
+                imagen.setAttribute("style","max-height: 200px; min-height: 200px");
+        
+                document.getElementById('ImagenCambio').src = TmpPath;
+            }
+        });
+    });
+    
+    $("#password").on("change",function(){
+        // aqui va el codigo que requieres hacer cuando se genere algun cambio....
+        //console.log("bien");
+        var contra = document.getElementById('password').value;
+        var contra2 = document.getElementById('newPassword').value;
+
+        var button = document.getElementById("botonContra");
+        if(contra != "" && contra2!= ""){
+            button.removeAttribute("disabled");
+        }else{
+            button.setAttribute("disabled", "");
+        }
+    });
+
+    $("#newPassword").on("change",function(){
+        // aqui va el codigo que requieres hacer cuando se genere algun cambio....
+        //console.log("bien");
+        var contra = document.getElementById('password').value;
+        var contra2 = document.getElementById('newPassword').value;
+        
+        var button = document.getElementById("botonContra");
+        if(contra != "" && contra2!= ""){
+            button.removeAttribute("disabled");
+        }else{
+            button.setAttribute("disabled", "");
+        }
+    });
+
+    function validaCamposFoto(){
+        var foto = document.getElementById("archivo"); 
+        //console.log(foto);
+        var button = document.getElementById("botonenviar");
+        if(foto.value){
+            button.removeAttribute("disabled");
+        }
+            
+    }
+
+</script>

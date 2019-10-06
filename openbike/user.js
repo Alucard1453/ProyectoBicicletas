@@ -11,6 +11,17 @@
 //   })
 // });
 
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal1');
+  var instances = M.Modal.init(elems);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal2');
+  var instances = M.Modal.init(elems);
+});
+
 //Navbar declarado con Jquery
 $(document).ready(function(){
   $('.sidenav').sidenav(
@@ -36,7 +47,7 @@ $(document).ready(function(){
 function validarsesion(){
   // Temporal mientras no se tiene el login
   localStorage.setItem("Logueado","1"); //1 = true // 0 = false
-  localStorage.setItem("Usuario","201648713");
+  localStorage.setItem("Usuario","201624306");
   if(localStorage.getItem("Logueado")){
       var logueado = parseInt(localStorage.getItem("Logueado"),10);
       if(logueado){
@@ -105,6 +116,8 @@ function loadBicicletas(bicicletas){
       
       var divImagen = document.createElement("div");
       divImagen.setAttribute("class","card-image waves-effect waves-block waves-light");
+
+      //CREACION DE ELEMENTO POR DOM
       var imagen = document.createElement("img");
       imagen.setAttribute("class","activator");
       imagen.setAttribute("src","data:image/jpg;base64,"+elementos[i].foto);
@@ -224,3 +237,4 @@ function validaCampos(){
   if(imagen.value && marca.value!="" && color.value!="" && tipo.value!="")
     boton.removeAttribute("disabled");
 }
+
