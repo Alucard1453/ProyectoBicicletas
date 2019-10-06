@@ -29,5 +29,5 @@ try {
 catch(PDOException $e){
     echo "<br>" . $e->getMessage();
 }
-header("Location: ./user.html");
+header("Location: ./user.php");
 ?>
