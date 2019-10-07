@@ -1,51 +1,41 @@
 <?php
 
+$servername = "localhost";
+$usuario = "root";
+$contrasena = "";
+$dbname = "sistemabicis";
+
 session_start();
+$user='201648713';
 
-$ContraActual=$_POST['contra1'];
-$ContraNueva=$_POST['contra2'];
+$ContraActual=$_GET['oldPass'];
+$ContraNueva=$_GET['newPass'];
 
-    try {
-        $mbd = new PDO("mysql:host=localhost;dbname=sistemabicis", 'root', '');
-        
-        $usuario = 201624306;
+$band = 0; //bandera es false;
 
-        $gsent = $mbd->prepare("SELECT CLAVEUSER, APATERNO, AMATERNO, NOMBRE,CONTRASENA, TIPO, ESTADO, FOTO from usuario where CLAVEUSER= '$usuario'");
-        $gsent->execute();
-        while($result3 = $gsent->fetch(PDO::FETCH_OBJ)){
-            $id = $result3->CLAVEUSER;
-            $paterno = $result3->APATERNO;       // Es una propiedad. Accesible desde el objeto
-            $materno = $result3->AMATERNO;        // Es una propiedad. Accesible desde el objeto
-            $nombre = $result3->NOMBRE;
-            $contrasena = $result3->CONTRASENA;
-            $tipo = $result3->TIPO;
-            $estado = $result3->ESTADO;        // Es una propiedad. Accesible desde el objeto
-            $foto = $result3->FOTO;    
-                                    
-        }                  
-    }
-        catch(PDOException $e){
-        echo $e->getMessage();
+try {
+    $mdb = new PDO("mysql:host=$servername;dbname=$dbname", $usuario, $contrasena);
+    // set the PDO error mode to exception
+    $mdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = $mdb->prepare("SELECT CONTRASENA FROM usuario WHERE CLAVEUSER='".$user."' ");
+    $sql->execute();
+    // use exec() because no results are returned
+    while($resultado = $sql->fetch(PDO::FETCH_OBJ)){
+        $contra = $resultado->CONTRASENA;
     }
 
-    if($contrasena == $ContraActual){
-
-        try {
-            $mbd = new PDO("mysql:host=localhost;dbname=sistemabicis", 'root', '');
-            
-    
-            $gsent = $mbd->prepare("UPDATE usuario SET CONTRASENA='".$ContraNueva."' WHERE CLAVEUSER='201624306'");
-            $gsent->execute();
-                        
-        }
-            catch(PDOException $e){
-            echo $e->getMessage();
-        }
-        /*echo'<script type="text/javascript">
-        alert("Tarea Guardada");
-        window.location.href="index.php";
-        </script>';*/
+    if($contra == $ContraActual){
+        $band=1;
+        $sql = $mdb->prepare("UPDATE usuario SET CONTRASENA = '".$ContraNueva."' ");
+        $sql->execute();
     }
-    header("Location: ./user.php");
+
+    $mdb = null;
+}
+catch(PDOException $e){
+    echo "<br>" . $e->getMessage();
+}
+
+echo $band;
 
 ?>
