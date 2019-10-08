@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--Import bootstrap-->
+    <!-- <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/> -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    
+    <title>Open Bike - Administración de bicicletas</title>
+
+    <!--Importacion de fuentes locales-->
+    <link rel="stylesheet" href="user.css" type="text/css" media="all" />
+    <script type="text/javascript" src="user.js"></script>
+    <script type="text/javascript">validarsesion();</script>
+</head>
+<body>
+    <nav> <!-- navbar content here  --> 
+        <div class="nav-wrapper light-blue darken-4">
+            <a href="#" class="brand-logo center">Logo</a>
+            <ul id="nav-mobile" class="left">
+                <li><a href="#" data-target="slide-out" class=" button-collapse sidenav-trigger show-on-large"><i class="material-icons">menu</i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="resources/fondo.jpg">
+                </div>
+            <a id="botonimgFlotante" href="#modalFoto" class="btn-floating waves-effect waves-light light-blue darken-4 modal-trigger"><i class="material-icons">add_a_photo</i></a>
+            <img id="fotoUser" class="circle">
+            <br>
+            <!-- <a href="#modal3" class="btn-floating waves-effect waves-light light-blue darken-4 modal-trigger right" style="min-width: 30px"><i class="material-icons">edit</i></a> -->
+            </div>
+        </li>
+        <li><a href="#modal3" id="nombreUser"></a></li>
+        <li><div class="divider" ></div></li>
+        <li><a class="subheader" id="idUser">id</a></li>
+        <li><div class="divider" ></div></li>
+        <li><a class="subheader" id="tipoUser" >tipo</a></li>
+        <li><div class="divider" ></div></li>
+        <li><a class="subheader" >Activo</a></li>
+        <li><div class="divider" ></div></li>
+        <li><a href="#modalContra" class="waves-effect modal-trigger"><i class="material-icons right">lock</i>Cambiar contraseña</a></li>
+    
+    </ul>
+
+<!-- MODAL1 foto MATERIALIZE -->
+    
+    <div id="modalFoto" class="modal">
+        <div class="modal-content">
+            <div class="row center">
+                <form action="validaFoto.php" method="POST" enctype="multipart/form-data" class="col s12" id="aux">
+                    <div class="col s12 m12 l12">
+                        <p><h5>Modificar foto de perfil</h5></p>
+                    </div>  
+                    <div class="divider"></div>
+                    <div class="col s12 m12 l12">
+                        <br><img id="ImagenCambio" class="imagenPersona" width="50%" /><br>
+                    </div>
+                    <div class="file-field input-field col s12 m12 l12">
+                        <div class="btn waves-effect waves-light light-blue darken-4">
+                            <i class="material-icons">image</i> Seleccionar Imagen
+                            <input id="archivo" name="archivo" type="file" accept="image/*" onchange="validaCamposFoto()"/>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <div class="separador"></div>
+                    <!-- <input type="file" id="archivo" name="archivo" onchange="validaCamposFoto()"/><br><br> -->
+                    <div class="col s12 m12 l12">
+                        <button id="botonenviar" type="submit" class="modal-close waves-effect waves-light light-blue darken-4 btn" disabled>
+                                <i class="material-icons right">save</i>Guardar </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL2 contraseña MATERIALIZE -->
+    
+    <div id="modalContra" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <form action="validaContra.php" method="POST" enctype="multipart/form-data" class="col s12">
+                    <div class="col s12 m12 l12 center">
+                        <p><h5>Cambiar contraseña</h5></p>
+                    </div>
+                    <div class="divider"></div>
+
+                    <div class="col s0 m2 l2"></div>
+                    <div class="col s12 m8 l8">
+                        <div class="input-field">
+                            <input id="oldpassword" name="contra1" type="password" class="validate" onchange="activaCambioContra()">
+                            <label for="oldpassword">Ingresa tu contraseña actual</label>
+                        </div>
+                        <div id="oldContraMal" class="aviso red lighten-2 center" style="color: white; display: none" >
+                            Contraseña erronea.
+                        </div>
+    
+                        <div class="input-field ">
+                            <input id="newpassword" name="contra2" type="password" class="validate" onchange="activaCambioContra()">
+                            <label for="newpassword">Ingresa tu nueva contraseña</label>
+                        </div>
+    
+                        <div class="input-field ">
+                            <input id="newpassword2" name="contra3" type="password" class="validate" onchange="activaCambioContra()">
+                            <label for="newpassword2">Confirma tu nueva contraseña</label>
+                        </div>
+                        <div id="newContraMal" class="aviso red lighten-2 center" style="color: white; display: none">
+                            Las contraseñas no coinciden.
+                        </div>
+                        <div class="separador"></div>
+                        <div class="center">
+                            <a id="botonContra" class="waves-effect waves-light light-blue darken-4 btn" onclick="actualizaContra(oldpassword.value, newpassword.value, newpassword2.value)" disabled>
+                                <i class="material-icons right">save</i>Guardar 
+                            </a>
+                            <input type="reset" id="botonClose" class="modal-close"style="display: none"> <!--  Boton para cerrar el modal activo -->
+                        </div>
+                    </div>
+                    <div class="col s0 m2 l2"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MDODAL INFORME DE DATOS ACTUALIZADOS -->
+    <a id="botonExito" href="#modalExito" class="modal-trigger"style="display: none">
+        Boton para llamar la confirmacion del movimiento
+    </a>
+
+    <div id="modalExito" class="modal">
+        <div class="modal-content">
+            <div class="row center">
+                <div class="col s12 m12 l12">
+                    <p><h5>Actualización exitosa</h5></p>
+                </div>  
+                <div class="divider"></div>
+                <div class="col s0 m2 l2"></div>
+                <div id="mensaje" class="col s12 m8 l8">
+                    Aqui va el mensaje del movimiento generado.
+                </div>
+                <div class="col s0 m2 l2"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close waves-effect waves-light light-blue darken-4 btn">Aceptar </button>
+        </div>
+    </div>
+
+    <!-- MODAL3 nombre MATERIALIZE -->
+    
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <form action="validaContra.php" method="POST" enctype="multipart/form-data" class="col s12">
+                    <div class="row">
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            
+        </div>
+    </div>
+
+    <div class="separador"></div>
+    <div class="container">
+        <h4>Administración de bicicletas</h4>
+        <!-- <h1 class="display-4">Administración de bicicletas</h1> -->
+        <div class="divider"></div>
+        <div class="separador"></div>
+        <div class="row" id="contenedor">
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-trigger right" data-target="modalAlta">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+            <!-- SE COMENTO DEBIDO A QUE SE CONSTRUIRA EL DOM USANDO AJAX -->
+            <!-- <div class="card col s12 m6 l4">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="images/office.jpg">
+                </div>
+                <div class="card-content">
+                    <div class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></div> -->
+                    <!-- ESTE NO SE PONDRA <p><a href="#">This is a link</a></p> -->
+                <!-- </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+                <div class="card-action"> -->
+                    <!-- Aqui van los botones para editar y eliminar -->
+                <!-- </div>
+            </div> -->
+        </div>
+        
+        <!-- Aqui el boton permanecia hasta abajo, se cambio para hacerlo flotante -->
+        <!-- <div class="row"> -->
+            <!-- Modal Trigger -->
+            <!-- <button class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-trigger right" 
+            data-target="modalAlta">
+                <i class="material-icons">add</i>
+            </button>
+        </div> -->
+          
+        <!-- Modal Structure Alta bicicletas-->
+        <div id="modalAlta" class="modal">
+            <div class="modal-content">
+                <h4>Alta de bicicletas</h4>
+                <div class="divider"></div>
+                <div style="height: 1em;"></div>
+                <div class="row">
+                    <form class="col s12" action="altabike.php" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col s12 m6 l6">
+                                <img id="imgSalida" width="100%" height="100%" src="./resources/bikedefault.png"/>
+                            </div>
+                            <div class="file-field input-field col s12 m6 l6">
+                                <div class="btn waves-effect waves-light light-blue darken-4">
+                                    <i class="material-icons">image</i> Seleccionar Imagen
+                                    <input id="file-input" name="file-input" type="file" accept="image/*" onchange="validaCampos()"/>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                            <div class="input-field col s12 m6 l6">
+                                <select id="selectMarca" name="selectMarca" onchange="validaCampos()">
+                                    <option value="" disabled selected>Elige la marca</option>
+                                </select>
+                                <label>Marca</label>
+                            </div>
+                            <div class="input-field col s12 m6 l6">
+                                <select id="selectColor" name="selectColor" onchange="validaCampos()">
+                                    <option value="" disabled selected>Elige el color</option>
+                                    <option value="Negro">Negro</option>
+                                    <option value="Verde">Verde</option>
+                                    <option value="Amarillo">Amarillo</option>
+                                    <option value="Naranja">Naranja</option>
+                                    <option value="Rojo">Rojo</option>
+                                    <option value="Morado">Morado</option>
+                                    <option value="Azul">Azul</option>
+                                    <option value="Blanco">Blanco</option>
+                                </select>
+                                <label>Color</label>
+                            </div>
+                            <div class="input-field col s12 m6 l6">
+                                <select id="selectTipo" name="selectTipo" onchange="validaCampos()">
+                                    <option value="" disabled selected>Selecciona el tipo</option>
+                                    <option value="Ciudad">Ciudad</option>
+                                    <option value="Montana">Montaña</option>
+                                    <option value="Carreras">Carreras</option>
+                                    <option value="Turismo">Turismo</option>
+                                    <option value="Plegable">Plegable</option>
+                                    <option value="Hibrida">Híbrida</option>
+                                    <option value="Playera">Playera</option>
+                                    <option value="BMX">BMX</option>
+                                </select>
+                                <label>Tipo de Bicicleta</label>
+                            </div>
+                            <div class="col s12 m6 l6"></div>
+                            <div class="input-field col s12 m6 l6">
+                                <button id="btnConfirmaAlta" class="modal-close waves-effect waves-light light-blue darken-4 btn" disabled>
+                                    <i class="material-icons right">send</i>Continuar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l6"></div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Structure Edicion bicicletas-->
+        <div id="modalEdicion" class="modal">
+            <div class="modal-content">
+                <h4>Edición de bicicletas</h4>
+                <div class="divider"></div>
+                <div style="height: 1em;"></div>
+                <div class="row">
+                    <form class="col s12" action="edicionbike.php" method="POST" enctype="multipart/form-data">
+                        <input type=hidden name="idBicicleta" id="idBicicleta">
+                        <div class="row">
+                            <div class="col s12 m6 l6">
+                                <img id="imgSalidaEdicion" width="100%" height="100%"/>
+                            </div>
+                            <div class="file-field input-field col s12 m6 l6">
+                                <div class="btn waves-effect waves-light light-blue darken-4">
+                                    <i class="material-icons">image</i> Seleccionar Imagen
+                                    <input id="fileinputEdicion" name="fileinputEdicion" type="file" accept="image/*"/>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                            <div class="input-field col s12 m6 l6">
+                                <select id="selectMarcaEdicion" name="selectMarcaEdicion" onchange="validaCamposM()">
+                                    <option value="" disabled selected>Elige la marca</option>
+                                </select>
+                                <label>Marca</label>
+                            </div>
+                            <div class="input-field col s12 m6 l6">
+                                <select id="selectColorEdicion" name="selectColorEdicion" onchange="validaCamposM()">
+                                    <option value="" disabled selected>Elige el color</option>
+                                    <option value="Negro">Negro</option>
+                                    <option value="Verde">Verde</option>
+                                    <option value="Amarillo">Amarillo</option>
+                                    <option value="Naranja">Naranja</option>
+                                    <option value="Rojo">Rojo</option>
+                                    <option value="Morado">Morado</option>
+                                    <option value="Azul">Azul</option>
+                                    <option value="Blanco">Blanco</option>
+                                </select>
+                                <label>Color</label>
+                            </div>
+                            <div class="input-field col s12 m6 l6">
+                                <select id="selectTipoEdicion" name="selectTipoEdicion" onchange="validaCamposM()">
+                                    <option value="" disabled selected>Selecciona el tipo</option>
+                                    <option value="Ciudad">Ciudad</option>
+                                    <option value="Montana">Montaña</option>
+                                    <option value="Carreras">Carreras</option>
+                                    <option value="Turismo">Turismo</option>
+                                    <option value="Plegable">Plegable</option>
+                                    <option value="Hibrida">Híbrida</option>
+                                    <option value="Playera">Playera</option>
+                                    <option value="BMX">BMX</option>
+                                </select>
+                                <label>Tipo de Bicicleta</label>
+                            </div>
+                            <div class="col s12 m6 l6"></div>
+                            <div class="input-field col s12 m6 l6">
+                                <button id="btnConfirmaEdicion" class="waves-effect waves-light light-blue darken-4 btn" disabled>
+                                    <i class="material-icons right">send</i>Continuar
+                                </button>
+                                <!-- <input type="reset" id="botonClose" class="modal-close"style="display: none"> -->
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l6"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal Structure Baja de bicicletas-->
+
+        <div id="modalBaja" class="modal">
+            <div class="modal-content">
+                <h4>Eliminar Bicicleta</h4>
+                <div class="divider"></div>
+                <div style="height: 1em;"></div>
+                <div class="row">
+                  <h6 id="messageBaja"></h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn waves-effect waves-light light-blue darken-4 modal-close" onclick="eliminarBicicleta()">Aceptar</a>&nbsp;&nbsp;
+                <a class="btn waves-effect waves-light red darken-1 right modal-close">Cancelar</a>
+            </div>
+        </div>
+    </div>
+    
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>
