@@ -7,7 +7,7 @@ $dbname = "sistemabicis";
 session_start();
 //Esta variable deberia ser sesion una vez que se genere el login
 //se declara aqui de manera temporal
-$user='201648713';
+$user=$_SESSION['usuario'];
 
 $imagen=addslashes(file_get_contents($_FILES['file-input']['tmp_name']));
 $marca=$_POST['selectMarca'];

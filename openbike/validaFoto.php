@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$user='201648713';
+$user=$_SESSION['usuario'];
 
     //$imagen = $_FILES['archivo']['tmp_name'];
 

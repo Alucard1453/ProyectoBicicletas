@@ -1,0 +1,35 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+.parallax-container {
+	height: 560px;
+}
+
+.carousel .carousel-item{
+	width:100%;
+}
+
+.tabs-font{
+	color: #01579b !important;
+}
+
+.separador{
+    height: 2em;
+}
+
+.card-panel{
+	padding-top: 5px;
+	height: 30px !important;
+	color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    #imagenlogin{
+		display: none;
+	}
+
+	#navspace{
+		display: none;
+	}
+}

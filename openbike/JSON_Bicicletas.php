@@ -4,9 +4,10 @@ $usuario = "root";
 $contrasena = "";
 $dbname = "sistemabicis";
 
+session_start();
 //Esta variable deberia ser sesion una vez que se genere el login
 //se declara aqui de manera temporal
-$user='201648713';
+$user=$_SESSION['usuario'];
 
 try {
     $mdb = new PDO("mysql:host=$servername;dbname=$dbname", $usuario, $contrasena);

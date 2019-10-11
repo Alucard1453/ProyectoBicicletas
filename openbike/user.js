@@ -46,14 +46,18 @@ $(document).ready(function(){
 
 function validarsesion(){
   // Temporal mientras no se tiene el login
-  localStorage.setItem("Logueado","1"); //1 = true // 0 = false
-  localStorage.setItem("Usuario","201624306");
+  // localStorage.setItem("Logueado","1"); //1 = true // 0 = false
+  // localStorage.setItem("Usuario","201624306");
   if(localStorage.getItem("Logueado")){
       var logueado = parseInt(localStorage.getItem("Logueado"),10);
       if(logueado){
-          getMarcas();
-          getBicicletas();
-          getUsuario(localStorage.getItem("Usuario"));
+          if(logueado==3){
+            location.href ="./worker.html";
+          }else{
+            getMarcas();
+            getBicicletas();
+            getUsuario(localStorage.getItem("Usuario"));
+          }
       }else{
           location.href ="/openbike/login.html";
       }

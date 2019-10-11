@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <title>Open Bike - Bienvenido</title>
+
+    <!--Importacion de fuentes locales-->
+    <link rel="stylesheet" href="index.css" type="text/css" media="all" />
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript">validarsesion();</script>
+</head>
+<body style="scroll">
+    <nav> <!-- navbar content here  --> 
+        <div class="nav-wrapper light-blue darken-4">
+            <div id="navspace" style="height: 8px;"></div>
+            <a href="./index.html" class="brand-logo center"><img src="./resources/logo.png" height="50px"></a>
+        </div>
+    </nav>
+    <div class="row">
+        <div id="imagenlogin" class="col s0 m6 l8 parallax-container">
+            <div class="parallax">
+                <img src="./resources/loginimg.jpg" width="800px">
+            </div>
+        </div>
+        <div class="col s12 m6 l4">
+            <div class="row">
+                <ul id="tabs-swipe-demo" class="tabs">
+                    <li class="tab col s6"><a class="active tabs-font" href="#swipe-1">Usuario</a></li>
+                    <li class="tab col s6"><a class="tabs-font" href="#swipe-2">Trabajador</a></li>
+                </ul>
+                <div id="swipe-1" class="col s12 center" style="height: 560px;"> <!-- Pestaña Usuario -->
+                    
+                    <h4>Inicio de sesión</h4>
+                    <div class="divider"></div>
+                    <div style="height: 2em;"></div>
+                    <div class="row">
+                        <div class="col s1 m2 l2"></div>
+                        <div class="col s10 m8 l8">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="usuarioU" name="usuarioU" type="text" class="validate" onkeyup="escribeuseru()">
+                                    <label for="usuarioU">Usuario</label>
+                                </div>
+                            </div>
+                            <div class="card-panel red lighten-2" id="nouseru" style="display : none" role="alert">
+                                Por favor ingrese su usuario.
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input id="contrasenaU" name="contrasenaU" type="password" class="validate" onkeyup="escribepassu()">
+                                    <label for="contrasenaU">Contraseña</label>
+                                </div>
+                            </div>
+                            <div class="card-panel red lighten-2" id="nopassu" style="display : none" role="alert">
+                                Por favor ingrese su contraseña.
+                            </div>
+                            <div class="card-panel red lighten-2" id="invalidu" style="display : none" role="alert">
+                                Datos invalidos.
+                            </div>
+                        </div>
+                        <div class="col s1 m2 l2"></div>
+                    </div>
+                    <div>
+                        <button id="loginUser" class="waves-effect waves-light light-blue darken-4 btn" onclick="ingresarUsuario(usuarioU.value, contrasenaU.value)">
+                            <i class="material-icons right">send</i>Ingresar
+                        </button>
+                    </div>
+
+                </div>
+                <div id="swipe-2" class="col s12 center" style="height: 560px;"> <!-- Pestaña Usuario -->
+                    
+                    <h4>Inicio de sesión</h4>
+                    <div class="divider"></div>
+                    <div style="height: 2em;"></div>
+                    <div class="row">
+                        <div class="col s1 m2 l2"></div>
+                        <div class="col s10 m8 l8">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="usuarioT" name="usuarioT" type="text" class="validate" onkeyup="escribeusert()">
+                                    <label for="usuarioT">Usuario</label>
+                                </div>
+                            </div>
+                            <div class="card-panel red lighten-2" id="nousert" style="display : none" role="alert">
+                                Por favor ingrese su usuario.
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input id="contrasenaT" name="contrasenaT" type="password" class="validate" onkeyup="escribepasst()">
+                                    <label for="contrasenaT">Contraseña</label>
+                                </div>
+                            </div>
+                            <div class="card-panel red lighten-2" id="nopasst" style="display : none" role="alert">
+                                Por favor ingrese su contraseña.
+                            </div>
+                            <div class="card-panel red lighten-2" id="invalidt" style="display : none" role="alert">
+                                Datos invalidos.
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select id="selectAcceso" name="selectAcceso" onchange="eligeAcceso()">
+                                        <option value="" disabled selected>Selecciona tu acceso</option>
+                                        <option value="" disabled selected>Selecciona tu acceso</option>
+                                        <option value="" disabled selected>Selecciona tu acceso</option>
+                                    </select>
+                                    <label>Acceso</label>
+                                </div>
+                            </div>
+                            <div class="card-panel red lighten-2" id="noaccest" style="display : none" role="alert">
+                                Por favor seleccione su acceso.
+                            </div>
+                        </div>
+                        <div class="col s1 m2 l2"></div>
+                    </div>
+                    <div>
+                        <button id="loginUser" class="waves-effect waves-light light-blue darken-4 btn" onclick="ingresarTrabajador(usuarioT.value, contrasenaT.value, selectAcceso.value)">
+                            <i class="material-icons right">send</i>Ingresar
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>
