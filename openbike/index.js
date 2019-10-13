@@ -166,11 +166,15 @@ function validarAccesoTrabajador(user, pass, acceso){
             var respuesta = parseInt(this.responseText,10);
             //var respuesta = this.responseText;
             if(respuesta){
+
+                
                 localStorage.setItem("Usuario",user);
                 localStorage.setItem("Logueado",respuesta); //El tipo 1 sera para estudiante
                                                       //El tipo 2 sera para visitante
                                                       //El tipo 3 sera para trabajador
                 localStorage.setItem("Acceso",acceso);
+                console.log(localStorage);
+                alert("alto");
                 if(respuesta==3)
                     location.href ="./worker.html";
             }

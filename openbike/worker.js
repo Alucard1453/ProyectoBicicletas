@@ -9,6 +9,51 @@ $(document).ready(function(){
   //   closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
   // }
   );
+  
+  $('#search').keyup(function(e){
+    let search = $('#search').val();
+    console.log(search);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+          var res = JSON.parse(this.responseText);
+          //console.log(res);
+          if(search==""){
+            cargaAlumnos();
+          }else{
+            template = `<table>
+            <thead>
+              <tr>
+                  <th>Nombre</th>
+                  <th>Paterno</th>
+                  <th>Materno</th>
+                  <th>Cambiar estado</th>
+              </tr>
+            </thead>
+            <tbody>`;
+            for(i=0;i<Object.keys(res).length;i++){
+              template += `
+              <tr>
+                <td>${res[i].nombre}</td>
+                <td>${res[i].paterno}</td>
+                <td>${res[i].materno}</td>
+                <td><button id="${res[i].claveuser}" class="btn modal-trigger">${res[i].estado}</button></td>
+                </tr>`;
+            }
+            template += `
+            </tbody>
+            </table>
+            `;
+            $('#ActualizaTabla').html(template);
+          }
+          
+
+        }
+    };
+    xmlhttp.open("GET", "BuscaNombre.php?busca="+search, true);
+    xmlhttp.send(); 
+  });
 });
 
 //Abrir el modal usando JQuery
@@ -20,6 +65,84 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('select').formSelect();
 });
+
+function cargaAlumnos(){
+  var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var res = JSON.parse(this.responseText);
+          //console.log(res);
+
+          template = `<table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Paterno</th>
+                <th>Materno</th>
+                <th>Cambiar estado</th>
+              </tr>
+            </thead>
+            <tbody>`;
+            for(i=0;i<Object.keys(res).length;i++){
+              template += `
+              <tr>
+                <td>${res[i].nombre}</td>
+                <td>${res[i].paterno}</td>
+                <td>${res[i].materno}</td>
+                <td><button id="${res[i].claveuser}" class="btn modal-trigger">${res[i].estado}</button></td>
+              </tr>`;
+            }
+
+            template += `
+            </tbody>
+            </table>
+            `;
+          $('#ActualizaTabla').html(template);
+        }
+      }
+      xmlhttp.open("GET", "CargaAlumnos.php", true);
+      xmlhttp.send(); 
+}
+
+function BorraTexto(){
+  console.log("evento");
+  document.getElementById('search').value = "";
+  var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var res = JSON.parse(this.responseText);
+          console.log(res);
+
+          template = `<table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Paterno</th>
+                <th>Materno</th>
+                <th>Cambiar estado</th>
+              </tr>
+            </thead>
+    
+            <tbody>`;
+            for(i=0;i<Object.keys(res).length;i++){
+              template += `
+              <tr>
+                <td>${res[i].nombre}</td>
+                <td>${res[i].paterno}</td>
+                <td>${res[i].materno}</td>
+                <td><button id="${res[i].claveuser}" class="btn modal-trigger">${res[i].estado}</button></td>
+              </tr>`;
+            }
+
+            template += `
+            </tbody>
+            </table>`;
+          $('#ActualizaTabla').html(template);
+        }
+      }
+      xmlhttp.open("GET", "CargaAlumnos.php", true);
+      xmlhttp.send(); 
+}
 
 // Se valida que todos los campos de la alta de visitantes
 function validaCamposVisitante(){

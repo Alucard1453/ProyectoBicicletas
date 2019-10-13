@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -13,7 +17,7 @@
 
     <!--Import bootstrap-->
     <!-- <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/> -->
-
+  
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
@@ -24,6 +28,7 @@
     <link rel="stylesheet" href="worker.css" type="text/css" media="all" />
     <script type="text/javascript" src="worker.js"></script>
     <script type="text/javascript">validarsesion();</script>
+    <script type="text/javascript">cargaAlumnos();</script>
 </head>
 
 <body>
@@ -55,12 +60,21 @@
               I am convenient because I require little markup to use effectively.</p>
             </div>
             <div class="card-action">
-                <a href="#" class="btn btn-primary">Ir</a>
+              <button data-target="accesotrabajador" class="btn modal-trigger">Buscar alumno</button>
             </div>
           </div>
         </div>
       </div>
-    
+    <!-- Modal Structure para ALTA de visitantes -->
+    <div id="accesotrabajador" class="modal">
+      <div class="modal-content"style="margin: 2%">
+
+          <h4>Habilitar cuenta del alumno</h4>
+          <div class="row" style="margin: 2%">
+            hola a todos
+          </div>
+      </div>
+  </div>
 
     <!-- Card para habilitar cuenta alumno -->
     <div class="row">
@@ -70,16 +84,42 @@
               <img src="./resources/fondo.jpg" style="width: 100%; height: 100%;"  class="card-img" alt="...">
             </div>
             <div class="card-content">
-              <span class="card-title">Alta de alumno</span>
+              <span class="card-title">Habilitar cuenta alumno</span>
               <p>I am a very simple card. I am good at containing small bits of information.
               I am convenient because I require little markup to use effectively.</p>
             </div>
             <div class="card-action">
-                <a href="#" class="btn btn-primary">Ir</a>
+              <button data-target="modalAlumnosHabilitar" class="btn modal-trigger">Buscar alumno</button>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Modal Structure para habilitar cuenta alumno -->
+    <div id="modalAlumnosHabilitar" class="modal">
+      <div class="modal-content"style="margin: 2%">
+
+          <h4><center>Habilitar cuenta del alumno</center></h4>
+          <div class="row" style="margin: 2%"><br>
+            <div>
+              <nav>
+                <div class="nav-wrapper">
+                  <form>
+                    <div class="input-field">
+                      <input id="search" placeholder="Busca alumno" type="search" required>
+                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                      <i class="material-icons" onclick="BorraTexto()">close</i>
+                    </div>
+                  </form>
+                </div>
+              </nav>
+            </div><br>
+            <div id="ActualizaTabla">
+              
+            </div>
+          </div>
+      </div>
+  </div>
 
     <!-- Card para agregar visitantes -->
     <div class="row">
