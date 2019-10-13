@@ -142,6 +142,18 @@
       </div>
     <!-- Terminan cards -->
     
+    <form name="formulario" action="" onSubmit="enviarDatos(); return false" >
+      <h2>Equipo</h2>
+      <input type="text" name="equipo" id="equipo"/>
+    
+      <h2>Dorsal</h2>
+      <input type="text" name="dorsal" id="dorsal"/>
+    
+      <input type="texto" name="jugador" id="jugador"/>
+    
+            <input type="submit" value="Mostrar Jugador"/>
+    
+    </form
 
 
     <!-- Modal Structure para ALTA de visitantes -->
@@ -150,13 +162,13 @@
 
             <h4>Alta de visitantes</h4>
             <div class="row" style="margin: 2%">
-                <form class="col s12" action="altaVisitor.php" method="POST" enctype="multipart/form-data">
+                <form class="col s12" action="altaVisitor.php" method="GET" enctype="multipart/form-data" name="formularioVisitante">
                     <input type=hidden name="altaV" id="altaV">
                     <div class="row">
                         
                         <!-- NOMBRE -->
                         <div class="input-field col s12 m12 ">
-                                <input id="nombreVisitante" name="nombreVisitante" type="text" onchange="validaCamposVisitante()"/>
+                                <input id="nombreVisitante" name="nombreVisitante" type="text"/>
                                 <label>Nombre(s)</label>
                         </div>
                         <!-- APELLIDO PATERNO -->
@@ -220,21 +232,30 @@
 
                         <!-- BOTON DE CONFIRMACION -->
                         <div class="input-field col s12 m6 l6">
-                            <button name="altaVisitor" id="btnConfirmaAltaVisitante" onclick="altaVisitante()" class="waves-effect waves-light light-blue darken-4 btn" disabled>
+                            <button name="altaVisitor" id="btnConfirmaAltaVisitante" onclick="altaVisitante()"  
+                               class="btn waves-effect waves-light light-blue darken-4 modal-close" disabled>
                                 <i class="material-icons right">sed</i>Confirmar Alta
-                            </button>
+                            </button>&nbsp;&nbsp;
+
+                            <!-- <a class="btn waves-effect waves-light light-blue darken-4 modal-close" onclick="altaVisitante()">Aceptar</a>&nbsp;&nbsp;
+                             -->
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+        <div class="modal-footer">
+          <button class="modal-close waves-effect waves-light light-blue darken-4 btn" id="cancelarRegistro" style="display: none;"></button>
+      </div>
+        
     </div>
     <!-- Termina modal de registro para visitantes -->
 
-    <!-- Modal que indica que el visitante ha sido dado de alta exitosamente -->
-    <a id="exitoAltaVisitante" href="#modalExito" class="modal-trigger"style="display: none">
-    </a>
 
+    
+    <!-- Modal que indica que el visitante ha sido dado de alta exitosamente -->
+    <button id="exitoAltaVisitante" href="#modalExitoAltaVisitante" class="modal-trigger"style="display: none">
+    </button>
 
     <div id="modalExitoAltaVisitante" class="modal">
         <div class="modal-content">
@@ -251,7 +272,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="modal-close waves-effect waves-light light-blue darken-4 btn">Aceptar</button>
+            <button class="modal-close waves-effect waves-light light-blue darken-4 btn" >Aceptar</button>
         </div>
     </div>
 

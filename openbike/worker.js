@@ -156,10 +156,6 @@ function validaCamposVisitante(){
       boton.removeAttribute("disabled");
   }
 
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.modalVisitantes');
-  var instances = M.Modal.init(elems);
-});
 
 function validarsesion(){
   localStorage.setItem("Logueado","1"); //1 = true // 0 = false
@@ -530,30 +526,109 @@ function validaCamposM(){
 }
 
 
+function objetoAjax(){
+  var xmlhttp = false;
+  try {
+    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+  } catch (e) {
+
+    try {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    } catch (E) {
+      xmlhttp = false; }
+  }
+
+  if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+    xmlhttp = new XMLHttpRequest();
+    console.log("Chale" );
+  }
+  console.log(xmlhttp);
+  return xmlhttp;
+}
+
 function altaVisitante(){
-  // var idbicicleta = parseInt(localStorage.getItem("idBicicleta"),10);
+  console.log("Comienza esta  mamada");
+
+        var nombre = document.formularioVisitante.nombreVisitante.value;
+        var apellidoP = document.formularioVisitante.apellidoPatVisitante.value;
+        var apellidoM = document.formularioVisitante.apellidoMatVisitante.value;
+        var contrasenia = document.formularioVisitante.contraseniaVisitante.value;
+
+        var marca = document.formularioVisitante.selectMarcaBiciVisitante.value;
+        var color = document.formularioVisitante.selectColorBiciVisitante.value;
+        var tipo = document.formularioVisitante.selectTipoBiciVisitante.value;
+
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        // var respuesta = this.responseText;
-        // console.log(respuesta);
-        var respuesta = parseInt(this.responseText,10);
-        if(respuesta){
+    
+
           var mensaje=document.getElementById("mensajeAltaVisitante");
           mensaje.innerText="Alta Confirmada";
-          // mensaje.innerText="Baja de la bicicleta "+localStorage.getItem("marcaBicicleta")+" realizada correctamente.";
-          // var contenedor=document.getElementById("contenedor");
-          // var hijo=document.getElementById("tarjeta"+idbicicleta);
-          // contenedor.removeChild(hijo);
-          var boton=document.getElementById("exitoAltaVisitante");
+          var boton=document.getElementById("cancelarRegistro");
           boton.click();
-        }
-        else{
-          console.log("Hubo un error en la eliminacion de la bicicleta "+idbicicleta);
-        }
-    }
-};
+          var boton2=document.getElementById("exitoAltaVisitante");
+          boton2.click();
+          
     
-xmlhttp.open("POST", "altaVisitor.php?success", true);
+};
+console.log("Altaaa funcion");
+xmlhttp.open("GET", "altaVisitor.php?nombreVisitante="+nombre+"apellidoPatVisitante="+apellidoP+"apellidoMatVisitante="+apellidoM+"contraseniaVisitante="+contrasenia+"selectMarcaBiciVisitante="+marca+"selectColorBiciVisitante="+color+"selectTipoBiciVisitante="+tipo, true);
 xmlhttp.send();
-}
+return false;
+
+
+  // //Recogemos los valores introducimos en los campos de texto
+  // var nombre = document.formularioVisitante.nombreVisitante.value;
+  // var apellidoP = document.formularioVisitante.apellidoPatVisitante.value;
+  // var apellidoM = document.formularioVisitante.apellidoMatVisitante.value;
+  // var contrasenia = document.formularioVisitante.contraseniaVisitante.value;
+
+  // var marca = document.formularioVisitante.selectMarcaBiciVisitante.value;
+  // var color = document.formularioVisitante.selectColorBiciVisitante.value;
+  // var tipo = document.formularioVisitante.selectTipoBiciVisitante.value;
+
+  
+
+  // //instanciamos el objetoAjax
+  // ajax = objetoAjax();
+
+  // //Abrimos una conexión AJAX pasando como parámetros el método de envío, y el archivo que realizará las operaciones deseadas
+  // ajax.open("POST", "altaVisitor.php", true);
+
+  // //cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
+  // ajax.onreadystatechange = function() {
+    
+  //   //Cuando se completa la petición, mostrará los resultados
+  //   if (ajax.readyState == 4){
+
+  //     //El método responseText() contiene el texto de nuestro 'altaVisitor.php'. Por ejemplo, cualquier texto que mostremos por un 'echo'
+  //     console.log(ajax.responseText);
+  //   }
+  // }
+
+  // //Llamamos al método setRequestHeader indicando que los datos a enviarse están codificados como un formulario.
+  // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+  // //enviamos las variables a 'consulta.php'
+   // ajax.send("&nombreVisitante="+nombre+"&apellidoPatVisitante="+apellidoP+"&apellidoMatVisitante="+apellidoM+"&contraseniaVisitante="+contrasenia+"&selectMarcaBiciVisitante="+marca+"&selectColorBiciVisitante="+marca+"&selectTipoBiciVisitante="+tipo);
+
+  
+
+    // var mensaje=document.getElementById("mensajeAltaVisitante");
+    // mensaje.innerText="Alta Confirmada";
+    // var boton=document.getElementById("cancelarRegistro");
+    // boton.click();
+    // var boton2=document.getElementById("exitoAltaVisitante");
+    // boton2.click();
+    // console.log("Altaaa funcion");
+    // return 1;
+
+
+
+  }
+
+
+
+
+
+         

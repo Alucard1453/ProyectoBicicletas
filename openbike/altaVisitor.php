@@ -19,7 +19,7 @@
 
 
     // 'funcion' que se ejecutara cuando un visitante quiera ser dado de alta
-    if (isset($_POST['altaVisitor'])) {
+    if (isset($_GET['altaVisitor'])) {
         
         do {
 
@@ -32,17 +32,17 @@
         
 
         // Datos personales visitante
-        $apellidoP = $_POST['apellidoPatVisitante'];
-        $apellidoM = $_POST['apellidoMatVisitante'];
-        $nombre = $_POST['nombreVisitante'];
-        $contrasenia = $_POST['contraseniaVisitante'];
+        $apellidoP = $_GET['apellidoPatVisitante'];
+        $apellidoM = $_GET['apellidoMatVisitante'];
+        $nombre = $_GET['nombreVisitante'];
+        $contrasenia = $_GET['contraseniaVisitante'];
         $tipo = "Visitante";
         $estado = "Activo";
 
         // Datos =basicos= de la bicicleta
-        $marca=$_POST['selectMarcaBiciVisitante'];
-        $color=$_POST['selectColorBiciVisitante'];
-        $tipoBici=$_POST['selectTipoBiciVisitante'];
+        $marca=$_GET['selectMarcaBiciVisitante'];
+        $color=$_GET['selectColorBiciVisitante'];
+        $tipoBici=$_GET['selectTipoBiciVisitante'];
 
         
         $sql = "INSERT INTO usuario (CLAVEUSER, APATERNO, AMATERNO, NOMBRE, CONTRASENA, TIPO, ESTADO) 
@@ -52,6 +52,8 @@
         $sqlBici = "INSERT INTO bicicleta (CLAVEUSER, IDMARCA, COLOR, ESTADO, TIPO) 
                     VALUES ('$folio', '$marca', '$color', '$estado', '".$tipoBici."')";
         $mdb->exec($sqlBici);
+
+        echo "Holi";
 
         $mdb = null;    
     
