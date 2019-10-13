@@ -547,7 +547,6 @@ function objetoAjax(){
 }
 
 function altaVisitante(){
-  console.log("Comienza esta  mamada");
 
         var nombre = document.formularioVisitante.nombreVisitante.value;
         var apellidoP = document.formularioVisitante.apellidoPatVisitante.value;
