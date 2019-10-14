@@ -76,6 +76,16 @@
       </div>
   </div>
 
+  <div id="ModalAlumnoEstado" class="modal">
+    <div class="modal-content"style="margin: 2%">
+      <span class="card-title"><h5 id="TextoEstado"></h5></span>
+        <p id="cuerpoModal"></p>
+    </div>
+    <div class="card-action" style="text-align:right; padding-right: 10px;"><br>
+      <button class="modal-close waves-light light-blue darken-4 btn" >Cerrar</button><br><br>
+    </div>
+</div>
+
     <!-- Card para habilitar cuenta alumno -->
     <div class="row">
         <div class="col s12 m3">
@@ -90,6 +100,7 @@
             </div>
             <div class="card-action">
               <button data-target="modalAlumnosHabilitar" class="btn modal-trigger">Buscar alumno</button>
+              <button data-target="ModalAlumnoEstado" class="btn modal-trigger" id="bottonOculto" style="display: none;"></button>
             </div>
           </div>
         </div>
@@ -106,7 +117,7 @@
                 <div class="nav-wrapper">
                   <form>
                     <div class="input-field">
-                      <input id="search" placeholder="Busca alumno" type="search" required>
+                      <input id="search" placeholder="Ingresa su matricula o nombre" type="search" required>
                       <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                       <i class="material-icons" onclick="BorraTexto()">close</i>
                     </div>

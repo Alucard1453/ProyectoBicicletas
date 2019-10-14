@@ -20,7 +20,7 @@ if(!empty($search)){
         $mdb = new PDO("mysql:host=$servername;dbname=$dbname", $usuario, $contrasena);
         // set the PDO error mode to exception
         $mdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = $mdb->prepare("SELECT * FROM usuario WHERE TIPO = 'Alumno' AND NOMBRE LIKE '$search%' ");
+        $sql = $mdb->prepare("SELECT * FROM usuario WHERE TIPO = 'Alumno' AND NOMBRE LIKE '$search%' OR CLAVEUSER LIKE '$search%'");
         $sql->execute();
         // use exec() because no results are returned
         while($resultado = $sql->fetch(PDO::FETCH_OBJ)){

@@ -12,7 +12,7 @@ $(document).ready(function(){
   
   $('#search').keyup(function(e){
     let search = $('#search').val();
-    console.log(search);
+    //console.log(search);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -25,6 +25,7 @@ $(document).ready(function(){
             template = `<table>
             <thead>
               <tr>
+                  <th>Matricula</th>
                   <th>Nombre</th>
                   <th>Paterno</th>
                   <th>Materno</th>
@@ -35,12 +36,17 @@ $(document).ready(function(){
             for(i=0;i<Object.keys(res).length;i++){
               template += `
               <tr>
+                <td>${res[i].claveuser}</td>
                 <td>${res[i].nombre}</td>
                 <td>${res[i].paterno}</td>
-                <td>${res[i].materno}</td>
-                <td><button id="${res[i].claveuser}" class="btn modal-trigger">${res[i].estado}</button></td>
-                </tr>`;
+                <td>${res[i].materno}</td>`;
+                if(res[i].estado == 'Activo'){
+                  template += `<td><button id="${res[i].claveuser}" class="modal-close waves-light light-red darken-4 btn" onclick="CambiarEstado(this)">${res[i].estado}</button></td>`;    
+                }else{
+                  template += `<td><button id="${res[i].claveuser}" class="modal-close waves-light light-blue darken-4 btn" onclick="CambiarEstado(this)">${res[i].estado}</button></td>`;
+                }
             }
+            template += `</tr>`;
             template += `
             </tbody>
             </table>
@@ -76,6 +82,7 @@ function cargaAlumnos(){
           template = `<table>
             <thead>
               <tr>
+                <th>Matricula</th>
                 <th>Nombre</th>
                 <th>Paterno</th>
                 <th>Materno</th>
@@ -86,13 +93,17 @@ function cargaAlumnos(){
             for(i=0;i<Object.keys(res).length;i++){
               template += `
               <tr>
+                <td>${res[i].claveuser}</td>
                 <td>${res[i].nombre}</td>
                 <td>${res[i].paterno}</td>
-                <td>${res[i].materno}</td>
-                <td><button id="${res[i].claveuser}" class="btn modal-trigger">${res[i].estado}</button></td>
-              </tr>`;
+                <td>${res[i].materno}</td>`;
+                if(res[i].estado == 'Activo'){
+                  template += `<td><button id="${res[i].claveuser}" class="modal-close waves-light light-red darken-4 btn" onclick="CambiarEstado(this)">${res[i].estado}</button></td>`;    
+                }else{
+                  template += `<td><button id="${res[i].claveuser}" class="modal-close waves-light light-blue darken-4 btn" onclick="CambiarEstado(this)">${res[i].estado}</button></td>`;
+                } 
             }
-
+            template += `</tr>`;
             template += `
             </tbody>
             </table>
@@ -104,18 +115,42 @@ function cargaAlumnos(){
       xmlhttp.send(); 
 }
 
+function CambiarEstado(info){
+  console.log(info.id);
+  var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText);
+        if(this.responseText == 1){
+          document.getElementById("TextoEstado").innerHTML = "Se ha cambiado el estado del alumno";
+          document.getElementById("cuerpoModal").innerHTML = "El alumno con la matricula "+info.id+ " fue inabilitado en el sistema";
+        }else{
+          document.getElementById("TextoEstado").innerHTML = "Se ha cambiado el estado del alumno";
+          document.getElementById("cuerpoModal").innerHTML = "El alumno con la matricula "+info.id+ " fue habilitado en el sistema";
+        }
+        
+
+        $("#bottonOculto").click();
+        cargaAlumnos();
+      }
+    }
+    xmlhttp.open("GET", "HabilitarCuenta.php?matricula="+info.id, true);
+    xmlhttp.send(); 
+}
+
 function BorraTexto(){
-  console.log("evento");
+  //console.log("evento");
   document.getElementById('search').value = "";
   var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           var res = JSON.parse(this.responseText);
-          console.log(res);
+          //console.log(res);
 
           template = `<table>
             <thead>
               <tr>
+                <th>Matricula</th>
                 <th>Nombre</th>
                 <th>Paterno</th>
                 <th>Materno</th>
@@ -127,13 +162,17 @@ function BorraTexto(){
             for(i=0;i<Object.keys(res).length;i++){
               template += `
               <tr>
+                <td>${res[i].claveuser}</td>
                 <td>${res[i].nombre}</td>
                 <td>${res[i].paterno}</td>
-                <td>${res[i].materno}</td>
-                <td><button id="${res[i].claveuser}" class="btn modal-trigger">${res[i].estado}</button></td>
-              </tr>`;
+                <td>${res[i].materno}</td>`;
+                if(res[i].estado == 'Activo'){
+                  template += `<td><button id="${res[i].claveuser}" class="modal-close waves-light light-red darken-4 btn" onclick="CambiarEstado(this)">${res[i].estado}</button></td>`;    
+                }else{
+                  template += `<td><button id="${res[i].claveuser}" class="modal-close waves-light light-blue darken-4 btn" onclick="CambiarEstado(this)">${res[i].estado}</button></td>`;
+                }
             }
-
+            template += `</tr>`;
             template += `
             </tbody>
             </table>`;
