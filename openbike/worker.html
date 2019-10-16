@@ -145,13 +145,11 @@
             </div>
             <div class="card-action">
                 <!-- Modal Trigger -->
-                <button data-target="modalVisitantes" class="btn modal-trigger">Agregar Nuevo</button>
+                <button data-target="modalVisitantes" class="btn modal-trigger" onclick="limpiarCampos()">Agregar Nuevo</button>
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-            <button class="modal-close waves-effect waves-light light-blue darken-4 btn" id="cancelarRegistro" style="display: none;"></button>
-        </div>
+        
       </div>
     <!-- Terminan cards -->
     
@@ -241,6 +239,9 @@
                     </div>
                 </form>
             </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close waves-effect waves-light light-blue darken-4 btn" id="cancelarRegistro"  style="display: none;"></button>
         </div>
     </div>
     <!-- Termina modal de registro para visitantes -->
