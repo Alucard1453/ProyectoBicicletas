@@ -569,30 +569,134 @@ function validaCamposM(){
 }
 
 
-function altaVisitante(){
-  // var idbicicleta = parseInt(localStorage.getItem("idBicicleta"),10);
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        // var respuesta = this.responseText;
-        // console.log(respuesta);
-        var respuesta = parseInt(this.responseText,10);
-        if(respuesta){
-          var mensaje=document.getElementById("mensajeAltaVisitante");
-          mensaje.innerText="Alta Confirmada";
-          // mensaje.innerText="Baja de la bicicleta "+localStorage.getItem("marcaBicicleta")+" realizada correctamente.";
-          // var contenedor=document.getElementById("contenedor");
-          // var hijo=document.getElementById("tarjeta"+idbicicleta);
-          // contenedor.removeChild(hijo);
-          var boton=document.getElementById("exitoAltaVisitante");
-          boton.click();
-        }
-        else{
-          console.log("Hubo un error en la eliminacion de la bicicleta "+idbicicleta);
-        }
-    }
-};
+// function altaVisitante(){
+//   // var idbicicleta = parseInt(localStorage.getItem("idBicicleta"),10);
+//   var xmlhttp = new XMLHttpRequest();
+//   xmlhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//         // var respuesta = this.responseText;
+//         // console.log(respuesta);
+//         var respuesta = parseInt(this.responseText,10);
+//         if(respuesta){
+//           var mensaje=document.getElementById("mensajeAltaVisitante");
+//           mensaje.innerText="Alta Confirmada";
+//           // mensaje.innerText="Baja de la bicicleta "+localStorage.getItem("marcaBicicleta")+" realizada correctamente.";
+//           // var contenedor=document.getElementById("contenedor");
+//           // var hijo=document.getElementById("tarjeta"+idbicicleta);
+//           // contenedor.removeChild(hijo);
+//           var boton=document.getElementById("exitoAltaVisitante");
+//           boton.click();
+//         }
+//         else{
+//           console.log("Hubo un error en la eliminacion de la bicicleta "+idbicicleta);
+//         }
+//     }
+// };
     
-xmlhttp.open("POST", "altaVisitor.php?success", true);
+// xmlhttp.open("POST", "altaVisitor.php?success", true);
+// xmlhttp.send();
+// }
+
+
+function altaVisitante(){
+
+  var nombre = document.formularioVisitante.nombreVisitante.value;
+  var apellidoP = document.formularioVisitante.apellidoPatVisitante.value;
+  var apellidoM = document.formularioVisitante.apellidoMatVisitante.value;
+  var contrasenia = document.formularioVisitante.contraseniaVisitante.value;
+
+  var marca = document.formularioVisitante.selectMarcaBiciVisitante.value;
+  var color = document.formularioVisitante.selectColorBiciVisitante.value;
+  var tipo = document.formularioVisitante.selectTipoBiciVisitante.value;
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+
+
+    var mensaje=document.getElementById("mensajeAltaVisitante");
+    mensaje.innerText="Alta Confirmada";
+    var boton=document.getElementById("cancelarRegistro");
+    boton.click();
+    //console.log("Se abre modal!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    var boton2=document.getElementById("exitoAltaVisitante");
+    boton2.click();
+    
+
+};
+console.log("Alta funcion");
+
+xmlhttp.open("GET", "altaVisitor.php?nombreVisitante="+nombre+"apellidoPatVisitante="+apellidoP+"apellidoMatVisitante="+apellidoM+"contraseniaVisitante="+contrasenia+"selectMarcaBiciVisitante="+marca+"selectColorBiciVisitante="+color+"selectTipoBiciVisitante="+tipo, true);
 xmlhttp.send();
+//return false;
+
+
+// //Recogemos los valores introducimos en los campos de texto
+// var nombre = document.formularioVisitante.nombreVisitante.value;
+// var apellidoP = document.formularioVisitante.apellidoPatVisitante.value;
+// var apellidoM = document.formularioVisitante.apellidoMatVisitante.value;
+// var contrasenia = document.formularioVisitante.contraseniaVisitante.value;
+
+// var marca = document.formularioVisitante.selectMarcaBiciVisitante.value;
+// var color = document.formularioVisitante.selectColorBiciVisitante.value;
+// var tipo = document.formularioVisitante.selectTipoBiciVisitante.value;
+
+
+
+// //instanciamos el objetoAjax
+// ajax = objetoAjax();
+
+// //Abrimos una conexión AJAX pasando como parámetros el método de envío, y el archivo que realizará las operaciones deseadas
+// ajax.open("POST", "altaVisitor.php", true);
+
+// //cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
+// ajax.onreadystatechange = function() {
+
+//   //Cuando se completa la petición, mostrará los resultados
+//   if (ajax.readyState == 4){
+
+//     //El método responseText() contiene el texto de nuestro 'altaVisitor.php'. Por ejemplo, cualquier texto que mostremos por un 'echo'
+//     console.log(ajax.responseText);
+//   }
+// }
+
+// //Llamamos al método setRequestHeader indicando que los datos a enviarse están codificados como un formulario.
+// ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+// //enviamos las variables a 'consulta.php'
+// ajax.send("&nombreVisitante="+nombre+"&apellidoPatVisitante="+apellidoP+"&apellidoMatVisitante="+apellidoM+"&contraseniaVisitante="+contrasenia+"&selectMarcaBiciVisitante="+marca+"&selectColorBiciVisitante="+marca+"&selectTipoBiciVisitante="+tipo);
+
+
+
+// var mensaje=document.getElementById("mensajeAltaVisitante");
+// mensaje.innerText="Alta Confirmada";
+// var boton=document.getElementById("cancelarRegistro");
+// boton.click();
+// var boton2=document.getElementById("exitoAltaVisitante");
+// boton2.click();
+// console.log("Altaaa funcion");
+// return 1;
+
+
+
+}
+
+function limpiarCampos(){
+
+  var campos = document.getElementById("nombreVisitante");
+  campos.value = "";
+  campos = document.getElementById("apellidoPatVisitante");
+  campos.value = "";
+  campos = document.getElementById("apellidoMatVisitante");
+  campos.value = "";
+  campos = document.getElementById("contraseniaVisitante");
+  campos.value = "";
+  campos = document.getElementById("selectMarcaBiciVisitante");
+  campos.value = "Elige la marca";
+  campos = document.getElementById("selectColorBiciVisitante");
+  campos.value = "Elige el color";
+  campos = document.getElementById("selectTipoBiciVisitante");
+  campos.value = "Selecciona el tipo";
+  var boton = document.getElementById("btnConfirmaAltaVisitante");
+  boton.setAttribute("disabled", "");
+
 }
