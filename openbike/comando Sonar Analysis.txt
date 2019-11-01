@@ -1,0 +1,1 @@
+sonar-scanner.bat -D"sonar.projectKey=openbike" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=af4ce461d344077f75d25e784053f25be7c69685"
