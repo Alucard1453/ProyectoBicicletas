@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--Import bootstrap-->
+  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <title>Open Bike - Accesos</title>
+
+    <!--Importacion de fuentes locales-->
+    <link rel="stylesheet" href="worker.css" type="text/css" media="all" />
+    <script type="text/javascript" src="./gestionAccesos.js"></script>
+    <script type="text/javascript">validarsesion();</script>
+</head>
+
+<body>
+    <!-- navbar content here  -->
+    <nav aria-label=""> <!-- navbar content here  --> 
+      <div class="nav-wrapper light-blue darken-4">
+        <ul id="nav-mobile" class="left">
+            <li><a href="#" data-target="slide-out" class=" button-collapse sidenav-trigger show-on-large"><i class="material-icons">menu</i></a></li>
+        </ul>
+        <div id="navspace" style="height: 8px;"></div>
+        <a href="./worker.html" class="brand-logo center"><img alt="" src="./resources/logo.png" height="50px"></a>
+      </div>
+    </nav>
+
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img alt="" src="resources/fondo.jpg">
+                </div>
+            <img alt="" id="fotoUser" class="circle">
+            <a href="#name"><span class="white-text name">Trabajador</span></a>
+            <a href="#email"><span class="white-text email">BUAP</span></a>
+          </div>
+        </li>
+        <li><a class="subheader" id="nombreUser"></a></li>
+        <li><div class="divider" ></div></li>
+        <li><a class="subheader"  id="nombreAcceso"></a></li>
+        <li><div class="divider" ></div></li>
+        <li><a class="subheader" id="idUser">id</a></li>
+        <li><div class="divider" ></div></li>
+        <li><br><br><br></li>
+        <li><div class="divider" ></div></li>
+        <li><a class="waves-effect" onclick="cerrarSesion()"><i class="material-icons right">exit_to_app</i>Cerrar Sesi&oacute;n</a></li>
+        
+    </ul>
+
+    <div class="row">
+        <div class="col m1"></div>
+        <div class="col s12 m3 ">
+            <div class="card sombra">
+                <div class="card-image">
+                    <img alt="" id="fotoAlumno" src="./resources/entradas.jpg" style="height: 300px;">
+                </div>
+                <div class="card-content">
+                    <span class="card-title" id="nombreAlumno"></span>
+                    <p id="contenido"></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col s12 m8" id="contenedor">
+            <div class="row" id="hijo">
+                <div class="col m1"></div>
+                <div class="col s12 m4">
+                    <blockquote>
+                        <strong>Entrada previamente registrada con la bicicleta.</strong> 
+                    </blockquote>
+                        
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img id="imgExit" alt="" class="activator" src="./resources/fondo.jpg" style="max-height: 200px; min-height: 200px">
+                        </div>
+                        <div class="card-content">
+                            <span id="tituloExit" class="card-title activator grey-text text-darken-4">Card Title
+                                <i class="material-icons right">more_vert</i>
+                            </span>
+                        </div>
+                        <div class="card-reveal">
+                            <span id="tituloExit2" class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                            <p id="contenidoExit"></p>
+                        </div>
+                        <div class="card-action" style="height: 70px;">
+                            <button id="btnSalida" data-target="modalSalida" class="btn waves-effect waves-light light-blue darken-4 right modal-trigger">
+                                Salida <i class="material-icons right">exit_to_app</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col m1"></div>
+                <div class="col m4">
+                    <h5>Registro de la entrada:</h5>
+                    <p id="dtsEntrada"></p>
+                </div>
+                <div class="col m1"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal Structure Ingreso bicicletas-->
+    <div id="modalAcceso" class="modal">
+        <div class="modal-content">
+            <h4>Registro de Entrada</h4>
+            <div class="divider"></div>
+            <div style="height: 1em;"></div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <strong>Fecha: </strong> <p id="fechaActual"></p>
+                </div>
+                <div class="input-field col s12 m6">
+                    <strong>Hora de entrada: </strong> <p id="horaActual"></p>
+                </div>
+                <div class="col s12 m6">
+                    <strong>Acceso: </strong> <p id="accesoentra"></p>
+                </div>
+                <div class="col s12 m6">
+                    <strong>Autoriza: </strong> <p id="autorizaentrada"></p>
+                </div>
+                <div class="col s12 m6 l6"></div>
+                <div class="input-field col s12 m6 l6">
+                    <button id="btnConfirmaAcceso" onclick="registraAcceso()" class="modal-close waves-effect waves-light light-blue darken-4 btn">
+                        <i class="material-icons right">send</i>Continuar
+                    </button>
+                </div>
+                <div class="col s12 m6 l6"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Trigger -->
+    <a id="btnexitoingreso" class="waves-effect waves-light btn modal-trigger" href="#modalexitoingreso" style="display: none;">Éxito</a>
+
+    <!-- Modal confirmacion Ingreso -->
+    <div id="modalexitoingreso" class="modal">
+        <div class="modal-content">
+            <h4>Movimiento exitoso.</h4>
+            <p>El acceso se registró correctamente.</p>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close waves-effect waves-light light-blue darken-4 btn">Aceptar</a>
+        </div>
+    </div>
+
+    <!-- Modal Structure Salida bicicletas-->
+    <div id="modalSalida" class="modal">
+        <div class="modal-content">
+            <h4>Registro de Salida</h4>
+            <div class="divider"></div>
+            <div style="height: 1em;"></div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <strong>Fecha: </strong> <p id="fechaSalida"></p>
+                </div>
+                <div class="input-field col s12 m6">
+                    <strong>Hora de salida: </strong> <p id="horaSalida"></p>
+                </div>
+                <div class="col s12 m6">
+                    <strong>Acceso: </strong> <p id="accesosale"></p>
+                </div>
+                <div class="col s12 m6">
+                    <strong>Autoriza: </strong> <p id="autorizasalida"></p>
+                </div>
+                <div class="col s12 m6 l6"></div>
+                <div class="input-field col s12 m6 l6">
+                    <button id="btnConfirmaSalida" onclick="registraSalida()" class="modal-close waves-effect waves-light light-blue darken-4 btn">
+                        <i class="material-icons right">send</i>Continuar
+                    </button>
+                </div>
+                <div class="col s12 m6 l6"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Trigger -->
+    <a id="btnexitosalida" class="waves-effect waves-light btn modal-trigger" href="#modalexitosalida" style="display: none;">Éxito</a>
+
+    <!-- Modal confirmacion salida -->
+    <div id="modalexitosalida" class="modal">
+        <div class="modal-content">
+            <h4>Movimiento exitoso.</h4>
+            <p>La salida se registró correctamente.</p>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close waves-effect waves-light light-blue darken-4 btn">Aceptar</a>
+        </div>
+    </div>
+
+     <!--JavaScript at end of body for optimized loading-->
+     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+</body>
+
+</html>

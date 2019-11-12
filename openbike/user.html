@@ -12,11 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!--Import bootstrap-->
-    <!-- <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/> -->
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
     <title>Open Bike - Administración de bicicletas</title>
 
@@ -26,14 +23,15 @@
     <script type="text/javascript">validarsesion();</script>
 </head>
 <body>
-    <nav> <!-- navbar content here  --> 
+    <nav>
         <div class="nav-wrapper light-blue darken-4">
-            <a href="#" class="brand-logo center">Logo</a>
             <ul id="nav-mobile" class="left">
                 <li><a href="#" data-target="slide-out" class=" button-collapse sidenav-trigger show-on-large"><i class="material-icons">menu</i></a></li>
             </ul>
+            <div id="navspace" style="height: 8px;"></div>
+            <a href="#" class="brand-logo center"><img src="./resources/logo.png" height="50px" alt=""></a>
         </div>
-    </nav>
+      </nav>
 
     <ul id="slide-out" class="sidenav">
         <li>
@@ -42,9 +40,8 @@
                     <img src="resources/fondo.jpg">
                 </div>
             <a id="botonimgFlotante" href="#modalFoto" class="btn-floating waves-effect waves-light light-blue darken-4 modal-trigger"><i class="material-icons">add_a_photo</i></a>
-            <img id="fotoUser" class="circle">
+            <img id="fotoUser" class="circle" alt="">
             <br>
-            <!-- <a href="#modal3" class="btn-floating waves-effect waves-light light-blue darken-4 modal-trigger right" style="min-width: 30px"><i class="material-icons">edit</i></a> -->
             </div>
         </li>
         <li><a href="#modal3" id="nombreUser"></a></li>
@@ -56,7 +53,11 @@
         <li><a class="subheader" >Activo</a></li>
         <li><div class="divider" ></div></li>
         <li><a href="#modalContra" class="waves-effect modal-trigger"><i class="material-icons right">lock</i>Cambiar contraseña</a></li>
-    
+        <li><div class="divider" ></div></li>
+        <li><br></li>
+        <li><div class="divider" ></div></li>
+        <li><a class="waves-effect" onclick="cerrarSesion()"><i class="material-icons right">exit_to_app</i>Cerrar Sesi&oacute;n</a></li>
+        
     </ul>
 
 <!-- MODAL1 foto MATERIALIZE -->
@@ -70,7 +71,7 @@
                     </div>  
                     <div class="divider"></div>
                     <div class="col s12 m12 l12">
-                        <br><img id="ImagenCambio" class="imagenPersona" width="50%" /><br>
+                        <br><img alt="" id="ImagenCambio" class="imagenPersona" width="50%" /><br>
                     </div>
                     <div class="file-field input-field col s12 m12 l12">
                         <div class="btn waves-effect waves-light light-blue darken-4">
@@ -82,10 +83,9 @@
                         </div>
                     </div>
                     <div class="separador"></div>
-                    <!-- <input type="file" id="archivo" name="archivo" onchange="validaCamposFoto()"/><br><br> -->
                     <div class="col s12 m12 l12">
                         <button id="botonenviar" type="submit" class="modal-close waves-effect waves-light light-blue darken-4 btn" disabled>
-                                <i class="material-icons right">save</i>Guardar </button>
+                            <i class="material-icons right">save</i>Guardar </button>
                     </div>
                 </form>
             </div>
@@ -93,7 +93,6 @@
     </div>
 
     <!-- MODAL2 contraseña MATERIALIZE -->
-    
     <div id="modalContra" class="modal">
         <div class="modal-content">
             <div class="row">
@@ -185,7 +184,6 @@
     <div class="separador"></div>
     <div class="container">
         <h4>Administración de bicicletas</h4>
-        <!-- <h1 class="display-4">Administración de bicicletas</h1> -->
         <div class="divider"></div>
         <div class="separador"></div>
         <div class="row" id="contenedor">
@@ -200,16 +198,16 @@
                     <img class="activator" src="images/office.jpg">
                 </div>
                 <div class="card-content">
-                    <div class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></div> -->
-                    <!-- ESTE NO SE PONDRA <p><a href="#">This is a link</a></p> -->
-                <!-- </div>
+                    <div class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></div>
+                    ESTE NO SE PONDRA <p><a href="#">This is a link</a></p>
+                </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
                     <p>Here is some more information about this product that is only revealed once clicked on.</p>
                 </div>
-                <div class="card-action"> -->
-                    <!-- Aqui van los botones para editar y eliminar -->
-                <!-- </div>
+                <div class="card-action">
+                    Aqui van los botones para editar y eliminar
+                </div>
             </div> -->
         </div>
         
@@ -232,7 +230,7 @@
                     <form class="col s12" action="altabike.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col s12 m6 l6">
-                                <img id="imgSalida" width="100%" height="100%" src="./resources/bikedefault.png"/>
+                                <img alt="" id="imgSalida" width="100%" height="100%" src="./resources/bikedefault.png"/>
                             </div>
                             <div class="file-field input-field col s12 m6 l6">
                                 <div class="btn waves-effect waves-light light-blue darken-4">
@@ -302,7 +300,7 @@
                         <input type=hidden name="idBicicleta" id="idBicicleta">
                         <div class="row">
                             <div class="col s12 m6 l6">
-                                <img id="imgSalidaEdicion" width="100%" height="100%"/>
+                                <img alt="" id="imgSalidaEdicion" width="100%" height="100%"/>
                             </div>
                             <div class="file-field input-field col s12 m6 l6">
                                 <div class="btn waves-effect waves-light light-blue darken-4">
@@ -352,7 +350,6 @@
                                 <button id="btnConfirmaEdicion" class="waves-effect waves-light light-blue darken-4 btn" disabled>
                                     <i class="material-icons right">send</i>Continuar
                                 </button>
-                                <!-- <input type="reset" id="botonClose" class="modal-close"style="display: none"> -->
                             </div>
                         </div>
                         <div class="col s12 m6 l6"></div>

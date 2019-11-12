@@ -1,13 +1,11 @@
 <?php
 $servername = "localhost";
-$usuario = "root";
-$contrasena = "";
+$usuario = "alucard";
+$contrasena = "spider1453";
 $dbname = "sistemabicis";
 
 $idAlumno = $_GET['matricula'];
 $auxEstado = "";
-
-$band = 0; //bandera es false;
 
 try {
     $mdb = new PDO("mysql:host=$servername;dbname=$dbname", $usuario, $contrasena);

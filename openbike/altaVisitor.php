@@ -1,61 +1,54 @@
 <?php
-
-    session_start();
     $servername = "localhost";
-    $usuario = "root";
-    $contrasena = "";
+    $usuario = "alucard";
+    $contrasena = "spider1453";
     $dbname = "sistemabicis";
 
-    $idBici = "";
+    session_start();
 
     try {
         $mdb = new PDO("mysql:host=$servername;dbname=$dbname", $usuario, $contrasena);
         // set the PDO error mode to exception
         $mdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch(PDOException $e){
-        echo "<br>" . $e->getMessage();
-    }
 
-
-    // 'funcion' que se ejecutara cuando un visitante quiera ser dado de alta
-    if (isset($_POST['altaVisitor'])) {
-        
         do {
 
-        $folio = rand(1, 9999);
+            $folio = rand(1, 9999);
 
-        $user_check_query = $mdb->query("SELECT CLAVEUSER FROM usuario WHERE CLAVEUSER = '$folio' ");
-        $user = $user_check_query->fetch();
+            $user_check_query = $mdb->query("SELECT CLAVEUSER FROM usuario WHERE CLAVEUSER = '$folio' ");
+            $user = $user_check_query->fetch();
 
         } while ($user); // Si ya existe un username igual, volvera a buscar otro folio  
         
 
         // Datos personales visitante
-        $apellidoP = $_POST['apellidoPatVisitante'];
-        $apellidoM = $_POST['apellidoMatVisitante'];
-        $nombre = $_POST['nombreVisitante'];
-        $contrasenia = $_POST['contraseniaVisitante'];
+        $apellidoP = $_GET['apellidoPatVisitante'];
+        $apellidoM = $_GET['apellidoMatVisitante'];
+        $nombre = $_GET['nombreVisitante'];
+        $contrasenia = $_GET['contraseniaVisitante'];
         $tipo = "Visitante";
         $estado = "Activo";
 
         // Datos =basicos= de la bicicleta
-        $marca=$_POST['selectMarcaBiciVisitante'];
-        $color=$_POST['selectColorBiciVisitante'];
-        $tipoBici=$_POST['selectTipoBiciVisitante'];
+        $marca=$_GET['selectMarcaBiciVisitante'];
+        $color=$_GET['selectColorBiciVisitante'];
+        $tipoBici=$_GET['selectTipoBiciVisitante'];
 
         
         $sql = "INSERT INTO usuario (CLAVEUSER, APATERNO, AMATERNO, NOMBRE, CONTRASENA, TIPO, ESTADO) 
                 VALUES ('".$folio."', '".$apellidoP."', '".$apellidoM."', '".$nombre."', '".$contrasenia."', '".$tipo."', '".$estado."')";
         $mdb->exec($sql);
 
-        $sqlBici = "INSERT INTO bicicleta (CLAVEUSER, IDMARCA, COLOR, ESTADO, TIPO) 
-                    VALUES ('$folio', '$marca', '$color', '$estado', '".$tipoBici."')";
-        $mdb->exec($sqlBici);
+        $sql = "INSERT INTO bicicleta (CLAVEUSER, IDMARCA, COLOR, ESTADO, TIPO) 
+                    VALUES ('".$folio."', '".$marca."', '".$color."', '".$estado."', '".$tipoBici."')";
+        $mdb->exec($sql);
 
         $mdb = null;    
     
         $_SESSION['success'] = "Has ingresado al sistema" + $folio;
         header("location: ./worker.html");
+    }
+    catch(PDOException $e){
+        echo "<br>" . $e->getMessage();
     }
 ?>

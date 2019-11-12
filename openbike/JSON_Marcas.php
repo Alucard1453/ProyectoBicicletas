@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$usuario = "root";
-$contrasena = "";
+$usuario = "alucard";
+$contrasena = "spider1453";
 $dbname = "sistemabicis";
 
 try {
@@ -12,7 +12,6 @@ try {
     $sql->execute();
     // use exec() because no results are returned
     $contador=0;
-    //$Temas = array();
     while($resultado = $sql->fetch(PDO::FETCH_OBJ)){
         $Marcas[$contador] = new stdClass();
         $Marcas[$contador]->id=$resultado->IDMARCA;

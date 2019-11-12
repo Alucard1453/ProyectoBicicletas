@@ -1,0 +1,30 @@
+.titulo-card {
+    text-shadow: 2px 2px 0 black,      
+               /* 6px 6px 2px black,     */
+               12px 12px 8px black;  
+}
+
+.sombra {
+    box-shadow: 2px 2px 10px black;        /* Sombra normal */
+}
+/* 
+@media only screen and (max-width: 1366px) {
+    #modalAcceso{
+        height: 650px;
+        width: 820px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    #modalAcceso{
+        width: 820px;
+        height: 650px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #modalAcceso{
+        width: fit-content;
+        height: 650px;
+    }
+} */

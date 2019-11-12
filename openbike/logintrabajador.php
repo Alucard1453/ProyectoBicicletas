@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$usuario = "root";
-$contrasena = "";
+$usuario = "alucard";
+$contrasena = "spider1453";
 $dbname = "sistemabicis";
 
 $username=$_GET['Usuario'];
@@ -54,26 +54,10 @@ $band = 0;
 for($i=0;$i<$contador;$i++){
     if($Trabajadores[$i]->getClave() == $username && $Trabajadores[$i]->getPass() == $pass){
         $_SESSION['usuario']=$Trabajadores[$i]->getClave();
+        $_SESSION['acceso']=$acceso;
         $band=3;
     }
 }
-
-/*if($band){
-    try {
-        $mdb = new PDO("mysql:host=$servername;dbname=$dbname", $usuario, $contrasena);
-        // set the PDO error mode to exception
-        $mdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = $mdb->prepare("SELECT idUsuario FROM usuario WHERE nUsuario='".$_SESSION['usuario']."' ");
-        $sql->execute();
-        // use exec() because no results are returned
-        $resultado = $sql->fetch(PDO::FETCH_OBJ);
-        $_SESSION['idUsuario'] = $resultado->idUsuario;
-        $mdb = null;
-    }
-    catch(PDOException $e){
-        echo $sql . "<br>" . $e->getMessage();
-    }
-}*/
 
 echo $band;
 

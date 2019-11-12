@@ -1,8 +1,8 @@
 <?php
 
 $servername = "localhost";
-$usuario = "root";
-$contrasena = "";
+$usuario = "alucard";
+$contrasena = "spider1453";
 $dbname = "sistemabicis";
 
 session_start();
@@ -11,7 +11,7 @@ $user=$_SESSION['usuario'];
 $ContraActual=$_GET['oldPass'];
 $ContraNueva=$_GET['newPass'];
 
-$band = 0; //bandera es false;
+$band = 0;
 
 try {
     $mdb = new PDO("mysql:host=$servername;dbname=$dbname", $usuario, $contrasena);

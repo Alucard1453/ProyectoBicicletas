@@ -29,8 +29,8 @@ function getAccesos(){
 
 //Recibe el JSON de la base y carga las Accesos disponibles para que se muestren en los modals de alta y edicion
 function loadAccesos(accesos){
-    var elementos = new Array();
-    elementos=accesos;
+    //var elementos = new Array();
+    var elementos=accesos;
     var contenedor = document.getElementById("selectAcceso");
     for(var i=0; i<elementos.length;i++){
         var opcion = document.createElement("option");
@@ -57,7 +57,7 @@ function escribeuseru() {
 }
 
 function escribepassu() {
-    var div = document.getElementById("nopassu");
+    let div = document.getElementById("nopassu");
     div.style.display = "none";
     div = document.getElementById("invalidu");
     div.style.display = "none";
@@ -65,12 +65,12 @@ function escribepassu() {
 
 function validarFormularioU(user,pass){
     if(user==""){
-        var div = document.getElementById("nouseru");
+        let div = document.getElementById("nouseru");
         div.style.display = "block";
     }
 
     if(pass==""){
-        var div = document.getElementById("nopassu");
+        let div = document.getElementById("nopassu");
         div.style.display = "block";
     }
 
@@ -107,12 +107,12 @@ function validarFormularioT(user,pass,acceso){
     }
 
     if(pass==""){
-        var div = document.getElementById("nopasst");
+        let div = document.getElementById("nopasst");
         div.style.display = "block";
     }
 
     if(acceso==""){
-        var div = document.getElementById("noaccest");
+        let div = document.getElementById("noaccest");
         div.style.display = "block";
     }
 
@@ -166,15 +166,13 @@ function validarAccesoTrabajador(user, pass, acceso){
             var respuesta = parseInt(this.responseText,10);
             //var respuesta = this.responseText;
             if(respuesta){
-
-                
                 localStorage.setItem("Usuario",user);
                 localStorage.setItem("Logueado",respuesta); //El tipo 1 sera para estudiante
                                                       //El tipo 2 sera para visitante
                                                       //El tipo 3 sera para trabajador
                 localStorage.setItem("Acceso",acceso);
                 console.log(localStorage);
-                alert("alto");
+                // alert("alto");
                 if(respuesta==3)
                     location.href ="./worker.html";
             }

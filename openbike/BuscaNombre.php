@@ -1,13 +1,8 @@
 <?php
 $servername = "localhost";
-$usuario = "root";
-$contrasena = "";
+$usuario = "alucard";
+$contrasena = "spider1453";
 $dbname = "sistemabicis";
-
-//session_start();
-//Esta variable deberia ser sesion una vez que se genere el login
-//se declara aqui de manera temporal
-//$user=$_SESSION['usuario'];
 
 $search=$_GET['busca'];
 
@@ -24,13 +19,6 @@ if(!empty($search)){
         $sql->execute();
         // use exec() because no results are returned
         while($resultado = $sql->fetch(PDO::FETCH_OBJ)){
-            /*$respuesta = new stdClass();
-            $respuesta->id=$resultado->CLAVEUSER;
-            $respuesta->paterno=$resultado->APATERNO;
-            $respuesta->materno=$resultado->AMATERNO;
-            $respuesta->nombre=$resultado->NOMBRE;
-            $respuesta->tipo=$resultado->TIPO;
-            $respuesta->foto=base64_encode($resultado->FOTO);*/
             $band = true;
             $Obtener[] = array(
                 'claveuser' => $resultado->CLAVEUSER,
@@ -48,23 +36,19 @@ if(!empty($search)){
 
     
 
-    if($band ==false){
+    if(!$band){
         $json = array();
-        //$json[] = array('resultado' => 'Sin resultados');
         $jsonstring = json_encode($json);
         echo $jsonstring;
     }else{
-        //$myJSON = array();
         $myJSON = json_encode($Obtener);
         echo $myJSON;
     }
     
 }else{
     $json = array();
-    //$json[] = array('resultado' => 'Sin resultados');
     $jsonstring = json_encode($json);
     echo $jsonstring;
 }
 
-//echo $search;
 ?>

@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$usuario = "root";
-$contrasena = "";
+$usuario = "alucard";
+$contrasena = "spider1453";
 $dbname = "sistemabicis";
 
 session_start();
@@ -9,8 +9,9 @@ session_start();
 //se declara aqui de manera temporal
 
 $idBicicleta=$_POST['idBicicleta'];
-if(!empty($_FILES['fileinputEdicion']['tmp_name']) && file_exists($_FILES['fileinputEdicion']['tmp_name']))
+if(!empty($_FILES['fileinputEdicion']['tmp_name']) && file_exists($_FILES['fileinputEdicion']['tmp_name'])){
     $fotoBicicleta=addslashes(file_get_contents($_FILES['fileinputEdicion']['tmp_name']));
+}
 $marcaBicicleta=$_POST['selectMarcaEdicion'];
 $colorBicicleta=$_POST['selectColorEdicion'];
 $tipoBicicleta=$_POST['selectTipoEdicion'];

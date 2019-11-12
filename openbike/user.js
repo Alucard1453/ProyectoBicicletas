@@ -1,17 +1,3 @@
-// Navbar declarado con javascript
-// document.addEventListener('DOMContentLoaded', function() {
-//   var elems = document.querySelectorAll('.sidenav');
-//   var instances = M.Sidenav.init(elems, closeOnClick= true, preventScrolling=true, {
-//     onOpenStart: function () {
-//       console.log("I trigger as soon as the page is loaded");
-//     },
-//     onCloseEnd: function () {
-//         console.log("same");
-//     }
-//   })
-// });
-
-
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.modal1');
   var instances = M.Modal.init(elems);
@@ -32,16 +18,9 @@ $(document).ready(function(){
   //   closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
   // }
   );
-});
-
-//Abrir el modal usando JQuery
-$(document).ready(function(){
   $('.modal').modal();
-});
-
-//Pata el select con materialize
-$(document).ready(function(){
   $('select').formSelect();
+  // validarsesion();
 });
 
 function validarsesion(){
@@ -59,10 +38,10 @@ function validarsesion(){
             getUsuario(localStorage.getItem("Usuario"));
           }
       }else{
-          location.href ="/openbike/login.html";
+          location.href ="./index.html";
       }
   } else{
-      location.href ="/openbike/login.html";
+      location.href ="./index.html";
   }
 }
 
@@ -82,8 +61,8 @@ function getMarcas(){
 
 //Recibe el JSON de la base y carga las marcas disponibles para que se muestren en los modals de alta y edicion
 function loadMarcas(marcas){
-  var elementos = new Array();
-  elementos=marcas;
+  // var elementos = new Array();
+  var elementos=marcas;
   var contenedor = document.getElementById("selectMarca");
   var contenedoredicion = document.getElementById("selectMarcaEdicion");
   //console.log(elementos);
@@ -117,8 +96,8 @@ function getBicicletas(){
 
 //Recibe el JSON de la base y carga las bicicletas disponibles en el DOM
 function loadBicicletas(bicicletas){
-  var elementos = new Array();
-  elementos=bicicletas;
+  // var elementos = new Array();
+  var elementos=bicicletas;
   var contenedor = document.getElementById("contenedor");
   //console.log(elementos);
   for(var i=0; i<elementos.length;i++){
@@ -155,10 +134,12 @@ function loadBicicletas(bicicletas){
       // Al presionar el boton ver mas se abre esta informacion detallada
       var divReveal = document.createElement("div");
       divReveal.setAttribute("class","card-reveal");
-      var span = document.createElement("span");
+
+      span = document.createElement("span");
       span.setAttribute("class","card-title grey-text text-darken-4");
       span.innerText="Bicicleta "+elementos[i].marca;
-      var icon = document.createElement("i");
+
+      icon = document.createElement("i");
       icon.setAttribute("class","material-icons right");
       icon.innerText="close";
       span.appendChild(icon);
@@ -187,7 +168,7 @@ function loadBicicletas(bicicletas){
       // boton.setAttribute( "data-backdrop", "false");
       //Solo para uso de prueba, su funcionamiento debe abrir un modal con los datos
       //para la edicion de la bicicleta
-      var icon = document.createElement("i");
+      icon = document.createElement("i");
       icon.setAttribute("class","material-icons right");
       icon.innerText="edit";
       boton.appendChild(icon);
@@ -215,7 +196,7 @@ function loadBicicletas(bicicletas){
       divAction.appendChild(separador);
       tarjeta.appendChild(divAction);
 
-      var separador = document.createElement("p");
+      separador = document.createElement("p");
       tarjeta.appendChild(separador);
 
       contenedor.appendChild(tarjeta);
@@ -238,13 +219,13 @@ function getUsuario(usuario){
 
 function loadUsuario(user){
   var objeto = document.getElementById("nombreUser");
-  if(user.tipo=="Alumno"){
+  // if(user.tipo=="Alumno"){
     objeto.innerHTML= user.nombre+" "+user.paterno+" "+user.materno;
     objeto.setAttribute("class","subheader");
-  } else{
-    objeto.innerHTML= "<i class='material-icons right'>edit</i>"+user.nombre+" "+user.paterno+" "+user.materno;
-    objeto.setAttribute("class","waves-effect modal-trigger");
-  }
+  // } else{
+  //   objeto.innerHTML= "<i class='material-icons right'>edit</i>"+user.nombre+" "+user.paterno+" "+user.materno;
+  //   objeto.setAttribute("class","waves-effect modal-trigger");
+  // }
   objeto = document.getElementById("idUser");
   objeto.innerHTML=user.id;
   objeto = document.getElementById("tipoUser");
@@ -266,10 +247,10 @@ $(document).ready(function(){
       //console.log(e);
       if(e.target.files && e.target.files[0]){
         var file = e.target.files[0];
-        imageType = /image.*/;
+        var imageType = /image.*/;
       
         if (!file.type.match(imageType))
-        return;
+          return;
     
         var reader = new FileReader();
         reader.onload = fileOnload;
@@ -295,10 +276,10 @@ $(document).ready(function(){
       //console.log(e);
       if(e.target.files && e.target.files[0]){
         var file = e.target.files[0];
-        imageType = /image.*/;
+        var imageType = /image.*/;
       
         if (!file.type.match(imageType))
-        return;
+          return;
     
         var reader = new FileReader();
         reader.onload = fileOnload;
@@ -365,7 +346,8 @@ function activaCambioContra(){
   var boton = document.getElementById("botonContra");
   var label = document.getElementById("newContraMal");
   label.style.display = "none";
-  var label = document.getElementById("oldContraMal");
+
+  label = document.getElementById("oldContraMal");
   label.style.display = "none";
   if(oldpassword.value != "" && newpassword.value!="" && newpassword2.value!="")
     boton.removeAttribute("disabled");
@@ -390,7 +372,8 @@ function actualizaContra(oldpass, newpass, newpass2){
               mensaje.innerText="Contraseña actualizada correctamente.";
               var boton=document.getElementById("botonClose");
               boton.click();
-              var boton=document.getElementById("botonExito");
+              
+              boton=document.getElementById("botonExito");
               boton.click();
             }
             else{
@@ -462,6 +445,20 @@ function validaCamposM(){
   var boton = document.getElementById("btnConfirmaEdicion");
   if(marca.value!="" && color.value!="" && tipo.value!="")
     boton.removeAttribute("disabled");
+}
+
+function cerrarSesion(){
+  localStorage.clear();
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var respuesta = this.responseText;
+          console.log(respuesta);
+          location.href ="./index.html";
+      }
+  };
+  xmlhttp.open("GET", "logout.php", true);
+  xmlhttp.send();
 }
 
 // function actualizaBici(img, marca, color, tipo){
