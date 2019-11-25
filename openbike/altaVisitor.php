@@ -25,7 +25,7 @@
         $apellidoP = $_GET['apellidoPatVisitante'];
         $apellidoM = $_GET['apellidoMatVisitante'];
         $nombre = $_GET['nombreVisitante'];
-        $contrasenia = $_GET['contraseniaVisitante'];
+        // $contrasenia = $_GET['contraseniaVisitante'];
         $tipo = "Visitante";
         $estado = "Activo";
 
@@ -36,17 +36,19 @@
 
         
         $sql = "INSERT INTO usuario (CLAVEUSER, APATERNO, AMATERNO, NOMBRE, CONTRASENA, TIPO, ESTADO) 
-                VALUES ('".$folio."', '".$apellidoP."', '".$apellidoM."', '".$nombre."', '".$contrasenia."', '".$tipo."', '".$estado."')";
+                VALUES ('".$folio."', '".$apellidoP."', '".$apellidoM."', '".$nombre."', '".$folio."', '".$tipo."', '".$estado."')";
         $mdb->exec($sql);
 
         $sql = "INSERT INTO bicicleta (CLAVEUSER, IDMARCA, COLOR, ESTADO, TIPO) 
                     VALUES ('".$folio."', '".$marca."', '".$color."', '".$estado."', '".$tipoBici."')";
         $mdb->exec($sql);
 
-        $mdb = null;    
-    
-        $_SESSION['success'] = "Has ingresado al sistema" + $folio;
-        header("location: ./worker.html");
+        $sql = "UPDATE usuario SET FOTO= '".$image."' WHERE CLAVEUSER= '".$folio."' ";
+        $mdb->exec($sql);
+        
+        $mdb = null;
+
+        echo $folio;
     }
     catch(PDOException $e){
         echo "<br>" . $e->getMessage();

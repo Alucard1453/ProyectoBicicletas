@@ -111,7 +111,10 @@ function loadBicicletas(bicicletas){
       //CREACION DE ELEMENTO POR DOM
       var imagen = document.createElement("img");
       imagen.setAttribute("class","activator");
-      imagen.setAttribute("src","data:image/jpg;base64,"+elementos[i].foto);
+      if(elementos[i].foto)
+        imagen.setAttribute("src","data:image/jpg;base64,"+elementos[i].foto);
+      else
+        imagen.setAttribute("src","./resources/bikedefault.png");
       imagen.setAttribute("style","max-height: 200px; min-height: 200px");
       //imagen.setAttribute("style","min-height: 300px");
       divImagen.appendChild(imagen);
@@ -230,10 +233,17 @@ function loadUsuario(user){
   objeto.innerHTML=user.id;
   objeto = document.getElementById("tipoUser");
   objeto.innerText= user.tipo;
-  objeto = document.getElementById("fotoUser");
-  objeto.setAttribute("src","data:image/jpg;base64,"+user.foto);
-  objeto = document.getElementById("ImagenCambio");
-  objeto.setAttribute("src","data:image/jpg;base64,"+user.foto);
+  if(user.foto){
+    objeto = document.getElementById("fotoUser");
+    objeto.setAttribute("src","data:image/jpg;base64,"+user.foto);
+    objeto = document.getElementById("ImagenCambio");
+    objeto.setAttribute("src","data:image/jpg;base64,"+user.foto);
+  }else{
+    objeto = document.getElementById("fotoUser");
+    objeto.setAttribute("src","./resources/images.png");
+    objeto = document.getElementById("ImagenCambio");
+    objeto.setAttribute("src","./resources/images.png");
+  }
 }
 
 //Muestra imagen cargada en la alta
@@ -431,8 +441,13 @@ function seleccionarBicicleta2(id, marca, foto){
   localStorage.setItem("marcaBicicleta",marca);
 
   //Se llenan los campos del modal de edicion
-  var foto_=document.getElementById("imgSalidaEdicion");
-  foto_.setAttribute("src","data:image/jpg;base64,"+foto);
+  if(foto){
+    var foto_=document.getElementById("imgSalidaEdicion");
+    foto_.setAttribute("src","data:image/jpg;base64,"+foto);
+  }else{
+    var foto_=document.getElementById("imgSalidaEdicion");
+    foto_.setAttribute("src","./resources/bikedefault.png");
+  }
   var idBicicleta = document.getElementById("idBicicleta");
   idBicicleta.setAttribute("value",id);
 }

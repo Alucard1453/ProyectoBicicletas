@@ -287,13 +287,13 @@ function validaCamposVisitante(){
   var nombre =  document.getElementById("nombreVisitante");
   var paterno =  document.getElementById("apellidoPatVisitante");
   var materno =  document.getElementById("apellidoMatVisitante");
-  var contra =  document.getElementById("contraseniaVisitante");
+  // var contra =  document.getElementById("contraseniaVisitante");
   var marca = document.getElementById("selectMarcaBiciVisitante");
   var color = document.getElementById("selectColorBiciVisitante");
   var tipo = document.getElementById("selectTipoBiciVisitante");
   var boton = document.getElementById("btnConfirmaAltaVisitante");
     
-  if(marca.value!="" && color.value!="" && tipo.value!="" && nombre.value!="" && paterno.value!="" && materno.value!="" && contra.value!="")
+  if(marca.value!="" && color.value!="" && tipo.value!="" && nombre.value!="" && paterno.value!="" && materno.value!="")
     boton.removeAttribute("disabled");
   else
     boton.setAttribute("disabled","true");
@@ -340,7 +340,7 @@ function altaVisitante(){
   var nombre = document.getElementById("nombreVisitante").value;
   var apellidoP = document.getElementById("apellidoPatVisitante").value;
   var apellidoM = document.getElementById("apellidoMatVisitante").value;
-  var contrasenia = document.getElementById("contraseniaVisitante").value;
+  // var contrasenia = document.getElementById("contraseniaVisitante").value;
 
   var marca = document.getElementById("selectMarcaBiciVisitante").value;
   var color = document.getElementById("selectColorBiciVisitante").value;
@@ -349,9 +349,10 @@ function altaVisitante(){
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
 
-
+      console.log(this.responseText);
       var mensaje=document.getElementById("mensajeAltaVisitante");
-      mensaje.innerText="Alta Confirmada";
+      mensaje.innerHTML="Alta Confirmada, la clave del usuario es <b>"+this.responseText+"</b> <br> Recuerda indicarle"+
+      " al usuario que su contraseña es la misma clave.";
       var boton=document.getElementById("cancelarRegistro");
       boton.click();
       var boton2=document.getElementById("exitoAltaVisitante");
@@ -359,7 +360,7 @@ function altaVisitante(){
       
 
   };
-  xmlhttp.open("GET","altaVisitor.php?nombreVisitante="+nombre+"&apellidoPatVisitante="+apellidoP+"&apellidoMatVisitante="+apellidoM+"&contraseniaVisitante="+contrasenia+"&selectMarcaBiciVisitante="+marca+"&selectColorBiciVisitante="+color+"&selectTipoBiciVisitante="+tipo, true);
+  xmlhttp.open("GET","altaVisitor.php?nombreVisitante="+nombre+"&apellidoPatVisitante="+apellidoP+"&apellidoMatVisitante="+apellidoM+"&selectMarcaBiciVisitante="+marca+"&selectColorBiciVisitante="+color+"&selectTipoBiciVisitante="+tipo, true);
   xmlhttp.send();
 }
 
@@ -371,8 +372,8 @@ function limpiarCampos(){
   campos.value = "";
   campos = document.getElementById("apellidoMatVisitante");
   campos.value = "";
-  campos = document.getElementById("contraseniaVisitante");
-  campos.value = "";
+  // campos = document.getElementById("contraseniaVisitante");
+  // campos.value = "";
   var boton = document.getElementById("btnConfirmaAltaVisitante");
   boton.setAttribute("disabled", "");
 

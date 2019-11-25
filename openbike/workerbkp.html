@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--Import bootstrap-->
+  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <title>Open Bike - Vigilantes</title>
+
+    <!--Importacion de fuentes locales-->
+    <link rel="stylesheet" href="worker.css" type="text/css" media="all" />
+    <script type="text/javascript" src="worker.js"></script>
+    <script type="text/javascript">validarsesion();</script>
+</head>
+
+<body>
+
+    <div class="col-12"> 
+
+    
+    <!-- navbar content here  -->
+    <nav aria-label=""> <!-- navbar content here  --> 
+      <div class="nav-wrapper light-blue darken-4">
+        <ul id="nav-mobile" class="left">
+            <li><a href="#" data-target="slide-out" class=" button-collapse sidenav-trigger show-on-large"><i class="material-icons">menu</i></a></li>
+        </ul>
+        <div id="navspace" style="height: 8px;"></div>
+        <a href="#" class="brand-logo center"><img alt="" src="./resources/logo.png" height="50px"></a>
+      </div>
+    </nav>
+
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img alt="" src="resources/fondo.jpg">
+                </div>
+            <!-- <a id="botonimgFlotante" href="#modalFoto" class="btn-floating waves-effect waves-light light-blue darken-4 modal-trigger"><i class="material-icons">add_a_photo</i></a> -->
+            <img alt="" id="fotoUser" class="circle">
+            <!-- <br> -->
+            <!-- <a class="btn-floating waves-effect waves-light light-blue darken-4 modal-trigger right" style="min-width: 30px"><i class="material-icons">edit</i></a> -->
+            <a href="#name"><span class="white-text name">Trabajador</span></a>
+            <a href="#email"><span class="white-text email">BUAP</span></a>
+          </div>
+        </li>
+        <li><a class="subheader" id="nombreUser"></a></li>
+        <li><div class="divider" ></div></li>
+        <li><a class="subheader"  id="nombreAcceso"></a></li>
+        <li><div class="divider" ></div></li>
+        <li><a class="subheader" id="idUser">id</a></li>
+        <li><div class="divider" ></div></li>
+        <li><br><br><br></li>
+        <li><div class="divider" ></div></li>
+        <li><a class="waves-effect" onclick="cerrarSesion()"><i class="material-icons right">exit_to_app</i>Cerrar Sesi&oacute;n</a></li>
+        
+    </ul>
+
+    <!-- CARDS (OPCIONES PARA EL TRABAJADOR) -->
+    <!-- Card para acceso -->
+    <div class="row">
+        <div class="col s12 m3">
+          <div class="card" style="margin: 2%">
+            <div class="col-md-4">
+              <img src="./resources/fondo.jpg" style="width: 100%; height: 100%;"  class="card-img" alt="...">
+            </div>
+            <div class="card-content">
+              <span class="card-title">Registro de accesos</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <button data-target="accesotrabajador" class="btn modal-trigger">Buscar alumno</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Modal Structure para ALTA de visitantes -->
+    <div id="accesotrabajador" class="modal">
+      <div class="modal-content"style="margin: 2%">
+
+          <h4>Habilitar cuenta del alumno</h4>
+          <div class="row" style="margin: 2%">
+            hola a todos
+          </div>
+      </div>
+  </div>
+
+  <div id="ModalAlumnoEstado" class="modal">
+    <div class="modal-content"style="margin: 2%">
+      <span class="card-title"><h5 id="TextoEstado"></h5></span>
+        <p id="cuerpoModal"></p>
+    </div>
+    <div class="card-action" style="text-align:right; padding-right: 10px;"><br>
+      <button class="modal-close waves-light light-blue darken-4 btn" >Cerrar</button><br><br>
+    </div>
+</div>
+
+    <!-- Card para habilitar cuenta alumno -->
+    <div class="row">
+        <div class="col s12 m3">
+          <div class="card" style="margin: 2%">
+            <div class="col-md-4">
+              <img src="./resources/fondo.jpg" style="width: 100%; height: 100%;"  class="card-img" alt="...">
+            </div>
+            <div class="card-content">
+              <span class="card-title">Habilitar cuenta alumno</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <button data-target="modalAlumnosHabilitar" class="btn modal-trigger">Buscar alumno</button>
+              <button data-target="ModalAlumnoEstado" class="btn modal-trigger" id="bottonOculto" style="display: none;"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Structure para habilitar cuenta alumno -->
+    <div id="modalAlumnosHabilitar" class="modal">
+      <div class="modal-content"style="margin: 2%">
+
+          <h4 class="center">Habilitar cuenta del alumno</h4>
+          <div class="row" style="margin: 2%"><br>
+            <div>
+              <nav aria-label="">
+                <div class="nav-wrapper">
+                  <form>
+                    <div class="input-field">
+                      <input id="search" placeholder="Ingresa su matricula o nombre" type="search" required>
+                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                      <i class="material-icons" onclick="BorraTexto()">close</i>
+                    </div>
+                  </form>
+                </div>
+              </nav>
+            </div><br>
+            <div id="ActualizaTabla">
+              
+            </div>
+          </div>
+      </div>
+  </div>
+
+    <!-- Card para agregar visitantes -->
+    <div class="row">
+        <div class="col s12 m3">
+          <div class="card" style="margin: 2%">
+            <div class="col-md-4">
+              <img src="./resources/fondo.jpg" style="width: 100%; height: 100%;"  class="card-img" alt="...">
+            </div>
+            <div class="card-content">
+              <span class="card-title">Visitantes</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+                <!-- Modal Trigger -->
+                <button data-target="modalVisitantes" class="btn modal-trigger" onclick="limpiarCampos()">Agregar Nuevo</button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    <!-- Terminan cards -->
+    </div>
+
+    <!-- Modal Structure para ALTA de visitantes -->
+    <div id="modalVisitantes" class="modal">
+        <div class="modal-content"style="margin: 2%">
+
+            <h4>Alta de visitantes</h4>
+            <div class="row" style="margin: 2%">
+                <!-- <form class="col s12" action="altaVisitor.php" method="POST" enctype="multipart/form-data" name="formularioVisitante" id="formularioVisitante"> -->
+                    <input type=hidden name="altaV" id="altaV">
+                    <div class="row">
+                        
+                        <!-- NOMBRE -->
+                        <div class="input-field col s12 m12 ">
+                                <input id="nombreVisitante" name="nombreVisitante" type="text" onchange="validaCamposVisitante()"/>
+                                <label>Nombre(s)</label>
+                        </div>
+                        <!-- APELLIDO PATERNO -->
+                        <div class="input-field col s12 m12 l6">
+                                <input id="apellidoPatVisitante" name="apellidoPatVisitante" type="text" onchange="validaCamposVisitante()"/>
+                                <label>Apellido Paterno</label>
+                        </div>
+
+                        <!-- APELLIDO MATERNO -->
+                        <div class="input-field col s12 m12 l6">
+                                <input id="apellidoMatVisitante" name="apellidoMatVisitante" type="text" onchange="validaCamposVisitante()"/>
+                                <label>Apellido Materno</label>
+                        </div>
+
+                        <!-- CONTRASENIA -->
+                        <div class="input-field col s12 m12 ">
+                                <input id="contraseniaVisitante" name="contraseniaVisitante" type="password" onchange="validaCamposVisitante()"/>
+                                <label>Contrase&ntilde;a</label>
+                        </div>
+
+                        <!-- MARCA DE LA BICICLETA DE VISITANTE -->
+                        <div class="input-field col s12 m12 l6">
+                            <select id="selectMarcaBiciVisitante" name="selectMarca" onchange="validaCamposVisitante()">
+                                <option value="" disabled selected>Elige la marca</option>
+                            </select>
+                            <label>Marca</label>
+                        </div>
+                            
+                        <!-- COLOR DE LA BICICLETA DE VISITANTE -->
+                        <div class="input-field col s12 m6 l6">
+                            <select id="selectColorBiciVisitante" name="selectColorBiciVisitante" onchange="validaCamposVisitante()">
+                                <option value="" disabled selected>Elige el color</option>
+                                <option value="Negro">Negro</option>
+                                <option value="Verde">Verde</option>
+                                <option value="Amarillo">Amarillo</option>
+                                <option value="Naranja">Naranja</option>
+                                <option value="Rojo">Rojo</option>
+                                <option value="Morado">Morado</option>
+                                <option value="Azul">Azul</option>
+                                <option value="Blanco">Blanco</option>
+                            </select>
+                            <label>Color</label>
+                        </div>
+
+                        <div class="input-field col s12 m6 l6">
+                            <select id="selectTipoBiciVisitante" name="selectTipoBiciVisitante" onchange="validaCamposVisitante()">
+                                <option value="" disabled selected>Selecciona el tipo</option>
+                                <option value="Ciudad">Ciudad</option>
+                                <option value="Montana">Montaña</option>
+                                <option value="Carreras">Carreras</option>
+                                <option value="Turismo">Turismo</option>
+                                <option value="Plegable">Plegable</option>
+                                <option value="Hibrida">Híbrida</option>
+                                <option value="Playera">Playera</option>
+                                <option value="BMX">BMX</option>
+                            </select>
+                            <label>Tipo de Bicicleta</label>
+                        </div>
+
+                        <div class="col s12 m6 l6"> <br> </div>
+
+                        <!-- BOTON DE CONFIRMACION -->
+                        <div class="input-field col s12 m6 l6">
+                            <button name="altaVisitor" id="btnConfirmaAltaVisitante" onclick="altaVisitante()"
+                               class="waves-effect waves-light light-blue darken-4 btn" disabled>
+                                <i class="material-icons right">send</i>Confirmar Alta
+                            </button>
+                        </div>
+                    </div>
+                <!-- </form> -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close waves-effect waves-light light-blue darken-4 btn" id="cancelarRegistro"  style="display: none;"></button>
+        </div>
+    </div>
+    <!-- Termina modal de registro para visitantes -->
+
+    <!-- Modal que indica que el visitante ha sido dado de alta exitosamente -->
+    <a id="exitoAltaVisitante" href="#modalExitoAltaVisitante" class="modal-trigger" data-target="modalExitoAltaVisitante" style="display: none">
+    </a>
+
+    <div id="modalExitoAltaVisitante" class="modal">
+        <div class="modal-content">
+            <div class="row center">
+                <div class="col s12 m12 l12">
+                    <p><h5>Exito</h5></p>
+                </div>  
+                <div class="divider"></div>
+                <div class="col s0 m2 l2"></div>
+                <div id="mensajeAltaVisitante" class="col s12 m8 l8">
+                  
+                </div>
+                <div class="col s0 m2 l2"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close waves-effect waves-light light-blue darken-4 btn">Aceptar</button>
+        </div>
+    </div>
+
+     <!--JavaScript at end of body for optimized loading-->
+     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+</body>
+
+</html>

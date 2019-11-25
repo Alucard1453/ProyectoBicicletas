@@ -1,3 +1,4 @@
+
 //Valida si hay una sesion iniciada para redireccionar
 function validarsesion(){
     if(localStorage.getItem("Logueado")){
@@ -7,10 +8,28 @@ function validarsesion(){
         else
             if(logueado == 3)
                 location.href ="./worker.html";
-    } else{
-        getAccesos();
     }
 }
+
+$(document).ready(function() { 
+    cerrarSesion();
+    getAccesos();
+});
+
+function cerrarSesion(){
+    localStorage.clear();
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var respuesta = this.responseText;
+            console.log(respuesta);
+            // location.href ="./index.html";
+        }
+    };
+    xmlhttp.open("GET", "logout.php", true);
+    xmlhttp.send();
+}
+
 
 //Solicita un JSON con los accesos
 function getAccesos(){
@@ -19,7 +38,7 @@ function getAccesos(){
         if (this.readyState == 4 && this.status == 200) {
             var accesos = JSON.parse(this.responseText);
             //var accesos = this.responseText;
-            //console.log(accesos);
+            // console.log(accesos);
             loadAccesos(accesos);
         }
     };
@@ -29,7 +48,7 @@ function getAccesos(){
 
 //Recibe el JSON de la base y carga las Accesos disponibles para que se muestren en los modals de alta y edicion
 function loadAccesos(accesos){
-    //var elementos = new Array();
+    // var elementos = new Array();
     var elementos=accesos;
     var contenedor = document.getElementById("selectAcceso");
     for(var i=0; i<elementos.length;i++){
@@ -38,6 +57,7 @@ function loadAccesos(accesos){
         opcion.innerHTML=elementos[i].descripcion;
 
         contenedor.appendChild(opcion);
+        // console.log(opcion);
     }
 }
 
@@ -200,4 +220,3 @@ $(document).ready(function(){
         responsiveThreshold : 1920
     });
 });
-        
